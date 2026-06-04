@@ -1,0 +1,52 @@
+---
+name: TU Dresden
+description: TU Dresden public developer/API footprint review for APIs.json cataloging.
+url: https://raw.githubusercontent.com/api-evangelist/tu-dresden/refs/heads/main/review.yml
+created: '2026-06-03'
+modified: '2026-06-03'
+reviews:
+  - date: '2026-06-03'
+    rating: 2
+    summary: >-
+      TU Dresden has a modest but real public API footprint. Verified live: a
+      gated lecture-catalog JSON API (vvz.phil, account + auth_code required,
+      10s rate limit), the ZIH Shibboleth SAML SSO IdP with public docs and
+      metadata, the OpARA research-data repository, and the Qucosa document
+      server which returns a valid OAI-PMH Identify response. The SLUB Dresden
+      Linked Open Data API (serving the university, separate library
+      institution) is documented with a Swagger UI and an Apache-2.0 GitHub
+      repo. The official github.com/tu-dresden org exists but is essentially
+      inactive (1 stale repo from 2015). No fabricated endpoints; only URLs
+      confirmed via live HTTP probes are listed. Rating reflects limited,
+      mostly-gated developer-facing API maturity.
+    endpoints:
+      - url: https://vvz.phil.tu-dresden.de/api
+        status: 200
+        note: Lecture catalog API docs; gated via auth_code, JSON, 10s rate limit.
+      - url: https://idp.tu-dresden.de/idp/shibboleth
+        status: 200
+        note: Shibboleth SAML 2.0 IdP metadata endpoint (ZIH SSO).
+      - url: https://idp.tu-dresden.de/docu/
+        status: 200
+        note: Shibboleth SSO documentation.
+      - url: https://tud.qucosa.de/oai/
+        status: 200
+        note: Qucosa OAI-PMH base; Identify verb returns valid OAI-PMH XML.
+      - url: https://opara.zih.tu-dresden.de/
+        status: 200
+        note: OpARA research-data repository home (ZIH).
+      - url: https://data.slub-dresden.de/
+        status: 200
+        note: SLUB Dresden Linked Open Data API portal.
+      - url: https://data.slub-dresden.de/doc/swagger_api
+        status: 200
+        note: SLUB LOD API Swagger UI / documentation.
+      - url: https://github.com/tu-dresden
+        status: 200
+        note: Official GitHub org; exists but inactive (single 2015 repo).
+      - url: https://tu-dresden.de/
+        status: 200
+        note: Official institution website.
+      - url: https://de.linkedin.com/school/tu-dresden/
+        status: 999
+        note: Official LinkedIn school page; 999 is LinkedIn bot-blocking, page exists.
