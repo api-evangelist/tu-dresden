@@ -1,0 +1,36 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "tud": "https://data.slub-dresden.de/vocab#",
+    "@vocab": "https://data.slub-dresden.de/vocab#",
+    "id": "@id",
+    "type": "@type",
+    "name": "schema:name",
+    "url": "schema:url",
+    "preferredName": "schema:name",
+    "alternateName": "schema:alternateName",
+    "description": "schema:description",
+    "additionalType": "schema:additionalType",
+    "sameAs": { "@id": "schema:sameAs", "@type": "@id" },
+    "Person": "schema:Person",
+    "Organization": "schema:Organization",
+    "CreativeWork": "schema:CreativeWork",
+    "Event": "schema:Event",
+    "Place": "schema:Place",
+    "University": "schema:CollegeOrUniversity",
+    "Library": "schema:Library",
+    "provider": {
+      "@id": "schema:provider",
+      "@type": "@id"
+    },
+    "TUDresden": {
+      "@id": "https://ror.org/042aqky30",
+      "@type": "schema:CollegeOrUniversity"
+    },
+    "SLUBDresden": {
+      "@id": "https://ror.org/03wjp7d56",
+      "@type": "schema:Library"
+    }
+  }
+}

@@ -103,6 +103,22 @@ apis:
         url: https://data.slub-dresden.de/doc/swagger_api
       - type: GitHub
         url: https://github.com/slub/data.slub-dresden.de
+      - type: OpenAPI
+        url: openapi/tu-dresden-slub-lod.yaml
+      - type: JSONSchema
+        url: json-schema/tu-dresden-entity-schema.json
+      - type: JSONStructure
+        url: json-structure/tu-dresden-entity-structure.json
+      - type: x-json-ld
+        url: json-ld/tu-dresden-context.jsonld
+      - type: x-vocabulary
+        url: vocabulary/tu-dresden-vocabulary.yml
+      - type: x-spectral-rules
+        url: rules/tu-dresden-rules.yml
+      - type: x-example
+        url: examples/tu-dresden-search-example.json
+      - type: x-example
+        url: examples/tu-dresden-entity-example.json
 common:
   - type: Website
     url: https://tu-dresden.de/

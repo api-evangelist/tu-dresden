@@ -1,0 +1,36 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://data.slub-dresden.de/persons/search?q=preferredName:Mozart&size=2&format=json"
+  },
+  "response": {
+    "hits": 2,
+    "data": [
+      {
+        "@type": "Person",
+        "id": "118583549",
+        "preferredName": "Mozart, Wolfgang Amadeus",
+        "alternateName": ["Mozart, W. A.", "Wolfgang Amadeus Mozart"],
+        "description": "Komponist der Wiener Klassik",
+        "additionalType": [
+          { "name": "Komponist", "description": "musical composer" }
+        ],
+        "sameAs": [
+          "https://d-nb.info/gnd/118583549",
+          "http://www.wikidata.org/entity/Q254",
+          "https://viaf.org/viaf/32197206"
+        ]
+      },
+      {
+        "@type": "Person",
+        "id": "11858356X",
+        "preferredName": "Mozart, Leopold",
+        "alternateName": ["Mozart, Johann Georg Leopold"],
+        "description": "Komponist und Musiktheoretiker",
+        "sameAs": [
+          "https://d-nb.info/gnd/11858356X"
+        ]
+      }
+    ]
+  }
+}

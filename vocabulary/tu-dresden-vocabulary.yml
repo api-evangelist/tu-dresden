@@ -1,0 +1,61 @@
+vocabulary:
+  name: TU Dresden / SLUB LOD API Vocabulary
+  description: >-
+    Controlled vocabulary of the core terms exposed by the SLUB Dresden Linked
+    Open Data API (LOD API), which serves TU Dresden. Terms are derived directly
+    from the publicly served Swagger 2.0 document (paths, parameters and the
+    documented entity-types and authority-providers).
+  version: "1.0"
+  terms:
+    - term: entity_type
+      definition: >-
+        The class of LOD entity index being accessed. Allowed values:
+        organizations, persons, resources, works, events, topics, geo.
+      tags: [path, taxonomy]
+    - term: authority_provider
+      definition: >-
+        External authority namespace used to resolve an identifier. Allowed
+        values: filmportal.de, swb, wd (Wikidata), isni, lc, orcid, gnd, viaf.
+      tags: [path, authority]
+    - term: source_index
+      definition: >-
+        The raw source-data index. Allowed values: kxp-de14, swb-aut,
+        gnd_marc21.
+      tags: [path, source]
+    - term: format
+      definition: >-
+        Query parameter controlling response Content-Type via content
+        negotiation. Allowed: nt, rdf, ttl, nq, jsonl, json.
+      tags: [parameter, serialization]
+    - term: q
+      definition: Lucene query string search parameter.
+      tags: [parameter, search]
+    - term: filter
+      definition: "Restrict a search by a value in a path, e.g. path_to_property:value."
+      tags: [parameter, search]
+    - term: sort
+      definition: "Ordering of returned datasets, e.g. path_to_property:[asc|desc]."
+      tags: [parameter, search]
+    - term: size
+      definition: Maximum number of hits to return (default 100, default 15 on topicsearch).
+      tags: [parameter, pagination]
+    - term: from
+      definition: Offset from the first result for pagination (default 0).
+      tags: [parameter, pagination]
+    - term: reconcile
+      definition: >-
+        OpenRefine Reconciliation, Suggest and Data-Extension service operations
+        for matching free text to authority entities.
+      tags: [operation, openrefine]
+    - term: preferredName
+      definition: The preferred authoritative name/label of an entity.
+      tags: [field, entity]
+    - term: alternateName
+      definition: Variant names/labels associated with an entity.
+      tags: [field, entity]
+    - term: additionalType
+      definition: Further typing of an entity, carrying a name and description.
+      tags: [field, entity]
+    - term: sameAs
+      definition: Authority-provider identifier links asserting entity equivalence.
+      tags: [field, linked-data]

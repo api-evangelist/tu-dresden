@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://data.slub-dresden.de/schema/entity.json",
+  "title": "SLUB LOD Entity",
+  "description": "A Linked Open Data entity record returned by the SLUB Dresden LOD API. Entities are schema.org-typed authority/bibliographic resources across the entity-types organizations, persons, resources, works, events, topics and geo.",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "description": "JSON-LD context reference when format=json/jsonld is requested.",
+      "type": ["string", "object"]
+    },
+    "@type": {
+      "description": "schema.org type of the entity (e.g. Person, Organization, CreativeWork, Event, Place).",
+      "type": ["string", "array"]
+    },
+    "id": {
+      "description": "The identifier of the record (e.g. a GND/SWB/Wikidata id such as 118695940 or Q1585819).",
+      "type": "string"
+    },
+    "preferredName": {
+      "description": "The preferred (authoritative) name of the entity.",
+      "type": "string"
+    },
+    "alternateName": {
+      "description": "Alternate names / variant labels for the entity.",
+      "type": ["string", "array"],
+      "items": { "type": "string" }
+    },
+    "description": {
+      "description": "A short description of the entity.",
+      "type": "string"
+    },
+    "additionalType": {
+      "description": "Further typing of the entity, each with a name/description.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "description": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "sameAs": {
+      "description": "Authority-provider identifiers linking this entity to filmportal.de, swb, wd (Wikidata), isni, lc, orcid, gnd or viaf.",
+      "type": ["string", "array"],
+      "items": { "type": "string", "format": "uri" }
+    }
+  },
+  "required": ["id", "preferredName"],
+  "additionalProperties": true
+}

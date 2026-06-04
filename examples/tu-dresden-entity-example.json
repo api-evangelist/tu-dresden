@@ -1,0 +1,22 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://data.slub-dresden.de/gnd/persons/118695940?format=json"
+  },
+  "response": {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "id": "118695940",
+    "preferredName": "Beispiel, Person",
+    "alternateName": ["Person Beispiel"],
+    "description": "Authority record aggregated from GND, with links to other authority providers.",
+    "additionalType": [
+      { "name": "DifferentiatedPerson", "description": "GND entity type" }
+    ],
+    "sameAs": [
+      "https://d-nb.info/gnd/118695940",
+      "http://www.wikidata.org/entity/Q1585819",
+      "https://viaf.org/viaf/20474817"
+    ]
+  }
+}

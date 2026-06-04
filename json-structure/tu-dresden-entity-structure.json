@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://data.slub-dresden.de/structure/entity.json",
+  "name": "SlubLodEntity",
+  "type": "object",
+  "description": "JSON Structure for a SLUB Dresden LOD API entity record.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The identifier of the record (GND/SWB/Wikidata id)."
+    },
+    "type": {
+      "type": "string",
+      "description": "schema.org type of the entity."
+    },
+    "preferredName": {
+      "type": "string",
+      "description": "The preferred authoritative name."
+    },
+    "alternateName": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Alternate names / variant labels."
+    },
+    "description": {
+      "type": "string",
+      "description": "Short description of the entity."
+    },
+    "additionalType": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "name": "AdditionalType",
+        "properties": {
+          "name": { "type": "string" },
+          "description": { "type": "string" }
+        }
+      },
+      "description": "Further typing of the entity."
+    },
+    "sameAs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Authority-provider identifier links (gnd, wd, viaf, isni, lc, orcid, swb, filmportal.de)."
+    }
+  },
+  "required": ["id", "preferredName"]
+}

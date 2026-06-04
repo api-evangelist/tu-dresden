@@ -1,0 +1,50 @@
+formats: [oas3]
+rules:
+  tu-dresden-info-title:
+    description: API must declare a title (LOD API).
+    severity: error
+    given: $.info
+    then:
+      field: title
+      function: truthy
+  tu-dresden-info-version:
+    description: API must declare a version.
+    severity: error
+    given: $.info
+    then:
+      field: version
+      function: truthy
+  tu-dresden-server-defined:
+    description: A server URL should be defined (https://data.slub-dresden.de).
+    severity: error
+    given: $.servers
+    then:
+      function: truthy
+  tu-dresden-operation-tags:
+    description: Every operation should carry at least one tag (source, authority_search, search and access, reconcile, explorative search).
+    severity: warn
+    given: $.paths[*][get,post]
+    then:
+      field: tags
+      function: truthy
+  tu-dresden-operation-operationId:
+    description: Every operation must declare a unique operationId.
+    severity: error
+    given: $.paths[*][get,post]
+    then:
+      field: operationId
+      function: truthy
+  tu-dresden-format-param:
+    description: Search and access operations expose a 'format' query parameter for content negotiation (nt, rdf, ttl, nq, jsonl, json).
+    severity: hint
+    given: $.paths[*][get].parameters[?(@.name=='format')]
+    then:
+      field: schema.type
+      function: truthy
+  tu-dresden-200-response:
+    description: Every operation should document a 200 Success response.
+    severity: warn
+    given: $.paths[*][get,post].responses
+    then:
+      field: "200"
+      function: truthy
