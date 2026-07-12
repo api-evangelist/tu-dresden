@@ -120,6 +120,10 @@ apis:
       - type: x-example
         url: examples/tu-dresden-entity-example.json
 common:
+  - type: VulnerabilityDisclosure
+    url: security/tu-dresden-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/tu-dresden-domain-security.yml
   - type: Website
     url: https://tu-dresden.de/
   - type: GitHub
