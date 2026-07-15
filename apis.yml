@@ -120,6 +120,8 @@ apis:
       - type: x-example
         url: examples/tu-dresden-entity-example.json
 common:
+  - type: AgenticAccess
+    url: agentic-access/tu-dresden-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/tu-dresden-vulnerability-disclosure.yml
   - type: DomainSecurity
