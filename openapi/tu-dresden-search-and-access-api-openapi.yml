@@ -1,0 +1,134 @@
+openapi: 3.0.3
+info:
+  title: LOD authority_search search and access API
+  version: '1.0'
+  description: Linked Open Data API published by the Saxony State and University Library (SLUB Dresden), which serves TU Dresden. Provides bibliographic and authority data (resources, persons, organizations, events, topics, works, geo) aggregated from K10Plus/SWB, GND and Wikidata, with search, source, reconcile and entity-lookup endpoints. Converted faithfully from the publicly served Swagger 2.0 document at https://data.slub-dresden.de/swagger.json
+servers:
+- url: https://data.slub-dresden.de
+tags:
+- name: search and access
+  description: Search and Access Operations
+paths:
+  /search:
+    get:
+      tags:
+      - search and access
+      summary: search over all entity-indices
+      operationId: searchAll
+      parameters:
+      - name: q
+        in: query
+        description: Lucene Query String Search Parameter
+        schema:
+          type: string
+      - name: format
+        in: query
+        description: 'set the Content-Type over this Query-Parameter. Allowed: nt, rdf, ttl, nq, jsonl, json'
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: 'how to sort the returned datasets. like: path_to_property:[asc|desc]'
+        schema:
+          type: string
+      - name: size
+        in: query
+        description: Configure the maxmimum amount of hits to be returned
+        schema:
+          type: integer
+      - name: from
+        in: query
+        description: Configure the offset from the frist result you want to fetch
+        schema:
+          type: integer
+      - name: filter
+        in: query
+        description: filter the search by a defined value in a path. e.g. path_to_property:value
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Record(s) not found
+  /{entity_type}/search:
+    parameters:
+    - name: entity_type
+      in: path
+      required: true
+      description: 'The name of the entity-type to access. Allowed Values: [''organizations'', ''persons'', ''resources'', ''works'', ''events'', ''topics'', ''geo''].'
+      schema:
+        type: string
+    get:
+      tags:
+      - search and access
+      summary: search on one given entity-index
+      operationId: searchInIndex
+      parameters:
+      - name: q
+        in: query
+        description: Lucene Query String Search Parameter
+        schema:
+          type: string
+      - name: format
+        in: query
+        description: 'set the Content-Type over this Query-Parameter. Allowed: nt, rdf, ttl, nq, jsonl, json'
+        schema:
+          type: string
+      - name: size
+        in: query
+        description: Configure the maxmimum amount of hits to be returned
+        schema:
+          type: integer
+          default: 100
+      - name: from
+        in: query
+        description: Configure the offset from the frist result you want to fetch
+        schema:
+          type: integer
+          default: 0
+      - name: sort
+        in: query
+        description: 'how to sort the returned datasets. like: path_to_property:[asc|desc]'
+        schema:
+          type: string
+      - name: filter
+        in: query
+        description: filter the search by a defined value in a path. e.g. path_to_property:value
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Record(s) not found
+  /{entity_type}/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: 'The ID-String of the record to access. Possible Values (examples): 118695940, 130909696'
+      schema:
+        type: string
+    - name: entity_type
+      in: path
+      required: true
+      description: 'The name of the entity-type to access. Allowed Values: [''organizations'', ''persons'', ''resources'', ''works'', ''events'', ''topics'', ''geo''].'
+      schema:
+        type: string
+    get:
+      tags:
+      - search and access
+      summary: get a single record of an entity-index, or search for all records containing this record as an attribute via isAttr parameter
+      operationId: getRecord
+      parameters:
+      - name: format
+        in: query
+        description: 'set the Content-Type over this Query-Parameter. Allowed: nt, rdf, ttl, nq, jsonl, json'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Record(s) not found

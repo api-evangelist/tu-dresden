@@ -1,0 +1,101 @@
+openapi: 3.0.3
+info:
+  title: LOD authority_search API
+  version: '1.0'
+  description: Linked Open Data API published by the Saxony State and University Library (SLUB Dresden), which serves TU Dresden. Provides bibliographic and authority data (resources, persons, organizations, events, topics, works, geo) aggregated from K10Plus/SWB, GND and Wikidata, with search, source, reconcile and entity-lookup endpoints. Converted faithfully from the publicly served Swagger 2.0 document at https://data.slub-dresden.de/swagger.json
+servers:
+- url: https://data.slub-dresden.de
+tags:
+- name: authority_search
+  description: Authority Provider Identifier Search
+paths:
+  /{authority_provider}/{entity_type}/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: 'The ID-String of the authority-identifier to access. Possible Values (examples): 208922695, 118695940, 20474817, Q1585819'
+      schema:
+        type: string
+    - name: entity_type
+      in: path
+      required: true
+      description: 'The name of the entity-index to access. Allowed Values: [''organizations'', ''persons'', ''resources'', ''works'', ''events'', ''topics'', ''geo''].'
+      schema:
+        type: string
+    - name: authority_provider
+      in: path
+      required: true
+      description: 'The name of the authority-provider to access. Allowed Values: [''filmportal.de'', ''swb'', ''wd'', ''isni'', ''lc'', ''orcid'', ''gnd'', ''viaf''].'
+      schema:
+        type: string
+    get:
+      tags:
+      - authority_search
+      summary: search for an given ID of a given authority-provider on a given entity-index
+      operationId: getByAuthorityAndEntity
+      parameters:
+      - name: format
+        in: query
+        description: 'set the Content-Type over this Query-Parameter. Allowed: nt, rdf, ttl, nq, jsonl, json'
+        schema:
+          type: string
+      - name: size
+        in: query
+        description: Configure the maxmimum amount of hits to be returned
+        schema:
+          type: integer
+          default: 100
+      - name: from
+        in: query
+        description: Configure the offset from the frist result you want to fetch
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Record(s) not found
+  /{authority_provider}/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: 'The ID-String of the authority-identifier to access. Possible Values (examples): 208922695, 118695940, 20474817, Q1585819'
+      schema:
+        type: string
+    - name: authority_provider
+      in: path
+      required: true
+      description: 'The name of the authority-provider to access. Allowed Values: [''filmportal.de'', ''swb'', ''wd'', ''isni'', ''lc'', ''orcid'', ''gnd'', ''viaf''].'
+      schema:
+        type: string
+    get:
+      tags:
+      - authority_search
+      summary: search for an given ID of a given authority-provider
+      operationId: getByAuthority
+      parameters:
+      - name: format
+        in: query
+        description: 'set the Content-Type over this Query-Parameter. Allowed: nt, rdf, ttl, nq, jsonl, json'
+        schema:
+          type: string
+      - name: size
+        in: query
+        description: Configure the maxmimum amount of hits to be returned
+        schema:
+          type: integer
+          default: 100
+      - name: from
+        in: query
+        description: Configure the offset from the frist result you want to fetch
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Record(s) not found

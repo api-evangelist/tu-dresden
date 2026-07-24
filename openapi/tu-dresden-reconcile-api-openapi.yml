@@ -1,0 +1,187 @@
+openapi: 3.0.3
+info:
+  title: LOD authority_search reconcile API
+  version: '1.0'
+  description: Linked Open Data API published by the Saxony State and University Library (SLUB Dresden), which serves TU Dresden. Provides bibliographic and authority data (resources, persons, organizations, events, topics, works, geo) aggregated from K10Plus/SWB, GND and Wikidata, with search, source, reconcile and entity-lookup endpoints. Converted faithfully from the publicly served Swagger 2.0 document at https://data.slub-dresden.de/swagger.json
+servers:
+- url: https://data.slub-dresden.de
+tags:
+- name: reconcile
+  description: Openrefine Reconcilation and Data Extension Operations
+paths:
+  /reconcile/:
+    get:
+      tags:
+      - reconcile
+      summary: OpenRefine Reconcilation Service API
+      description: https://github.com/OpenRefine/OpenRefine/wiki/Reconciliation-Service-API
+      operationId: getReconcile
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Check your JSON
+        '404':
+          description: Record(s) not found
+    post:
+      tags:
+      - reconcile
+      summary: OpenRefine Reconcilation Service API
+      description: https://github.com/OpenRefine/OpenRefine/wiki/Reconciliation-Service-API
+      operationId: postReconcile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Success
+  /reconcile/flyout/entity:
+    get:
+      tags:
+      - reconcile
+      summary: Openrefine Suggest-API suggest Entry Point
+      description: https://github.com/OpenRefine/OpenRefine/wiki/Suggest-API
+      operationId: flyoutEntity
+      parameters:
+      - name: id
+        in: query
+        description: the identifier of the entity to render
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Check your ID
+        '404':
+          description: Type not found
+  /reconcile/flyout/property:
+    get:
+      tags:
+      - reconcile
+      summary: Openrefine Suggest-API suggest Entry Point
+      description: https://github.com/OpenRefine/OpenRefine/wiki/Suggest-API
+      operationId: flyoutProperty
+      parameters:
+      - name: id
+        in: query
+        description: the identifier of the property to render
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Type not found
+  /reconcile/flyout/type:
+    get:
+      tags:
+      - reconcile
+      summary: Openrefine Suggest-API suggest Entry Point
+      description: https://github.com/OpenRefine/OpenRefine/wiki/Suggest-API
+      operationId: flyoutType
+      parameters:
+      - name: id
+        in: query
+        description: the identifier of the type to render
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Check your ID
+        '404':
+          description: Type not found
+  /reconcile/properties:
+    get:
+      tags:
+      - reconcile
+      summary: Openrefine Data-Extension-API
+      description: https://github.com/OpenRefine/OpenRefine/wiki/Data-Extension-API
+      operationId: reconcileProperties
+      parameters:
+      - name: queries
+        in: query
+        description: OpenRefine Reconcilation API Call for Multiple Queries
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: type string
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: how many properties shall be returned
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Check your Limit
+        '404':
+          description: Type not found
+  /reconcile/suggest/entity:
+    get:
+      tags:
+      - reconcile
+      summary: Openrefine Suggest-API suggest Entry Point
+      description: https://github.com/OpenRefine/OpenRefine/wiki/Suggest-API
+      operationId: suggestEntity
+      parameters:
+      - name: prefix
+        in: query
+        description: a string the user has typed
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Check your Limit
+        '404':
+          description: Type not found
+  /reconcile/suggest/property:
+    get:
+      tags:
+      - reconcile
+      summary: Openrefine Suggest-API suggest Entry Point
+      description: https://github.com/OpenRefine/OpenRefine/wiki/Suggest-API
+      operationId: suggestProperty
+      parameters:
+      - name: prefix
+        in: query
+        description: a string the user has typed
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Check your Limit
+        '404':
+          description: Type not found
+  /reconcile/suggest/type:
+    get:
+      tags:
+      - reconcile
+      summary: Openrefine Suggest-API suggest Entry Point
+      description: https://github.com/OpenRefine/OpenRefine/wiki/Suggest-API
+      operationId: suggestType
+      parameters:
+      - name: prefix
+        in: query
+        description: a string the user has typed
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Check your Limit
+        '404':
+          description: Type not found

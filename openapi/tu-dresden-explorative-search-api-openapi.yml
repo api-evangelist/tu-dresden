@@ -1,0 +1,104 @@
+openapi: 3.0.3
+info:
+  title: LOD authority_search explorative search API
+  version: '1.0'
+  description: Linked Open Data API published by the Saxony State and University Library (SLUB Dresden), which serves TU Dresden. Provides bibliographic and authority data (resources, persons, organizations, events, topics, works, geo) aggregated from K10Plus/SWB, GND and Wikidata, with search, source, reconcile and entity-lookup endpoints. Converted faithfully from the publicly served Swagger 2.0 document at https://data.slub-dresden.de/swagger.json
+servers:
+- url: https://data.slub-dresden.de
+tags:
+- name: explorative search
+  description: API endpoint to be use with the explorative search webapp
+paths:
+  /explore/aggregations:
+    get:
+      tags:
+      - explorative search
+      summary: aggregate topAuthors, datePublished and relatedTopics around topics
+      operationId: aggregateTopics
+      parameters:
+      - name: topics
+        in: query
+        required: true
+        description: multiple topics to aggregate
+        schema:
+          type: array
+          items:
+            type: string
+        style: form
+        explode: true
+      - name: contributor
+        in: query
+        description: use this specific contributor name as filter for the aggregation result
+        schema:
+          type: string
+      - name: restrict
+        in: query
+        description: restrict all topic queries to occurrences with this restriction-topic
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Record(s) not found
+  /explore/correlations:
+    get:
+      tags:
+      - explorative search
+      summary: correlate topics with their mutual occurances
+      operationId: correlateTopics
+      parameters:
+      - name: topics
+        in: query
+        required: true
+        description: multiple topics to correlate
+        schema:
+          type: array
+          items:
+            type: string
+        style: form
+        explode: true
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Record(s) not found
+  /explore/topicsearch:
+    get:
+      tags:
+      - explorative search
+      summary: perform a simple search on the topics index
+      operationId: queryTopics
+      parameters:
+      - name: q
+        in: query
+        required: true
+        description: query string to search
+        schema:
+          type: string
+      - name: size
+        in: query
+        description: size of the response
+        schema:
+          type: integer
+          default: 15
+      - name: fields
+        in: query
+        description: list of internal elasticsearch fields to query against.
+        schema:
+          type: array
+          items:
+            type: string
+          default:
+          - preferredName^2
+          - alternateName
+          - description
+          - additionalType.description
+          - additionalType.name
+        style: form
+        explode: true
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Record(s) not found
