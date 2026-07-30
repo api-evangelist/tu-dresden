@@ -14,9 +14,21 @@ description: >-
   Library (SLUB Dresden), which serves the university, additionally publishes a
   documented Linked Open Data API for bibliographic and authority data.
 type: Index
+accessModel:
+  pricing: free
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Free
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/tu-dresden.png
 url: https://raw.githubusercontent.com/api-evangelist/tu-dresden/refs/heads/main/apis.yml
 tags:
   - Education
@@ -30,95 +42,216 @@ created: '2026-06-03'
 modified: '2026-06-03'
 specificationVersion: '0.19'
 apis:
-  - aid: tu-dresden:lecture-catalog
-    name: TU Dresden Lecture Catalog API
-    description: >-
-      Gated JSON API providing automated access to public data from the TU
-      Dresden lecture directory (Vorlesungsverzeichnis): courses, seminars,
-      instructors, buildings, semesters, institutes and degree programs. Access
-      requires requesting an API account; an auth_code query parameter is
-      appended to requests. At least 10 seconds must elapse between calls.
-    humanURL: https://vvz.phil.tu-dresden.de/api
-    baseURL: https://vvz.phil.tu-dresden.de/api
-    tags: [ Courses, Catalog, Timetable, Education, JSON ]
-    properties:
-      - type: Documentation
-        url: https://vvz.phil.tu-dresden.de/api
-  - aid: tu-dresden:sso-shibboleth
-    name: TU Dresden Shibboleth Single Sign-On (SAML IdP)
-    description: >-
-      SAML 2.0 Shibboleth Identity Provider operated by the ZIH for
-      authentication and authorization of TU Dresden services, and usable by
-      external services for federated login (DFN-AAI). OIDC support is planned
-      but not yet available. Metadata is published at the shibboleth endpoint.
-    humanURL: https://idp.tu-dresden.de/docu/
-    baseURL: https://idp.tu-dresden.de/idp/shibboleth
-    tags: [ Authentication, SSO, SAML, Shibboleth, Identity ]
-    properties:
-      - type: Documentation
-        url: https://idp.tu-dresden.de/docu/
-      - type: Authentication
-        url: https://idp.tu-dresden.de/idp/shibboleth
-  - aid: tu-dresden:qucosa-oai
-    name: Qucosa OAI-PMH (TU Dresden Document Server)
-    description: >-
-      OAI-PMH 2.0 metadata harvesting interface for Qucosa, the document and
-      publication server used by TU Dresden (tud.qucosa.de) for theses,
-      dissertations and open-access publications. Supports standard OAI verbs
-      such as Identify, ListRecords and GetRecord.
-    humanURL: https://tud.qucosa.de/
-    baseURL: https://tud.qucosa.de/oai/
-    tags: [ Repository, OAI-PMH, Open Access, Metadata, Publications ]
-    properties:
-      - type: Documentation
-        url: https://tud.qucosa.de/oai/?verb=Identify
-  - aid: tu-dresden:opara
-    name: OpARA Research Data Repository
-    description: >-
-      OpARA (Open Access Repository and Archive) is the research-data
-      repository for researchers of TU Dresden and TU Bergakademie Freiberg,
-      operated by the ZIH. It supports long-term archiving and open-access
-      publication of research data and is registered as a data provider in
-      OpenAIRE/OpenDOAR.
-    humanURL: https://opara.zih.tu-dresden.de/
-    baseURL: https://opara.zih.tu-dresden.de/
-    tags: [ Research Data, Repository, Open Access, Archive ]
-    properties:
-      - type: Documentation
-        url: https://tu-dresden.de/zih/forschung/projekte/opara
-  - aid: tu-dresden:slub-lod
-    name: SLUB Dresden Linked Open Data API
-    description: >-
-      Documented Linked Open Data API published by the Saxony State and
-      University Library (SLUB Dresden), which serves TU Dresden. Provides
-      bibliographic and authority data (Resources, Persons, Organizations,
-      Events, Places, Works, Topics) aggregated from K10Plus, SWB, GND and
-      Wikidata, with /search, /source, /reconcile and entity-lookup endpoints.
-      Interactive Swagger UI is available. Implementation is Apache 2.0 licensed.
-    humanURL: https://data.slub-dresden.de/
-    baseURL: https://data.slub-dresden.de
-    tags: [ Library, Linked Open Data, Bibliographic, Authority, Swagger ]
-    properties:
-      - type: Documentation
-        url: https://data.slub-dresden.de/doc/swagger_api
-      - type: GitHub
-        url: https://github.com/slub/data.slub-dresden.de
-      - type: OpenAPI
-        url: openapi/tu-dresden-slub-lod.yaml
-      - type: JSONSchema
-        url: json-schema/tu-dresden-entity-schema.json
-      - type: JSONStructure
-        url: json-structure/tu-dresden-entity-structure.json
-      - type: x-json-ld
-        url: json-ld/tu-dresden-context.jsonld
-      - type: x-vocabulary
-        url: vocabulary/tu-dresden-vocabulary.yml
-      - type: x-spectral-rules
-        url: rules/tu-dresden-rules.yml
-      - type: x-example
-        url: examples/tu-dresden-search-example.json
-      - type: x-example
-        url: examples/tu-dresden-entity-example.json
+- aid: tu-dresden:lecture-catalog
+  name: TU Dresden Lecture Catalog API
+  description: >-
+    Gated JSON API providing automated access to public data from the TU Dresden lecture directory (Vorlesungsverzeichnis):
+    courses, seminars, instructors, buildings, semesters, institutes and degree programs. Access requires
+    requesting an API account; an auth_code query parameter is appended to requests. At least 10 seconds
+    must elapse between calls.
+  humanURL: https://vvz.phil.tu-dresden.de/api
+  baseURL: https://vvz.phil.tu-dresden.de/api
+  tags:
+  - Courses
+  - Catalog
+  - Timetable
+  - Education
+  - JSON
+  properties:
+  - type: Documentation
+    url: https://vvz.phil.tu-dresden.de/api
+- aid: tu-dresden:sso-shibboleth
+  name: TU Dresden Shibboleth Single Sign-On (SAML IdP)
+  description: >-
+    SAML 2.0 Shibboleth Identity Provider operated by the ZIH for authentication and authorization of
+    TU Dresden services, and usable by external services for federated login (DFN-AAI). OIDC support is
+    planned but not yet available. Metadata is published at the shibboleth endpoint.
+  humanURL: https://idp.tu-dresden.de/docu/
+  baseURL: https://idp.tu-dresden.de/idp/shibboleth
+  tags:
+  - Authentication
+  - SSO
+  - SAML
+  - Shibboleth
+  - Identity
+  properties:
+  - type: Documentation
+    url: https://idp.tu-dresden.de/docu/
+  - type: Authentication
+    url: https://idp.tu-dresden.de/idp/shibboleth
+- aid: tu-dresden:qucosa-oai
+  name: Qucosa OAI-PMH (TU Dresden Document Server)
+  description: >-
+    OAI-PMH 2.0 metadata harvesting interface for Qucosa, the document and publication server used by
+    TU Dresden (tud.qucosa.de) for theses, dissertations and open-access publications. Supports standard
+    OAI verbs such as Identify, ListRecords and GetRecord.
+  humanURL: https://tud.qucosa.de/
+  baseURL: https://tud.qucosa.de/oai/
+  tags:
+  - Repository
+  - OAI-PMH
+  - Open Access
+  - Metadata
+  - Publications
+  properties:
+  - type: Documentation
+    url: https://tud.qucosa.de/oai/?verb=Identify
+- aid: tu-dresden:opara
+  name: OpARA Research Data Repository
+  description: >-
+    OpARA (Open Access Repository and Archive) is the research-data repository for researchers of TU Dresden
+    and TU Bergakademie Freiberg, operated by the ZIH. It supports long-term archiving and open-access
+    publication of research data and is registered as a data provider in OpenAIRE/OpenDOAR.
+  humanURL: https://opara.zih.tu-dresden.de/
+  baseURL: https://opara.zih.tu-dresden.de/
+  tags:
+  - Research Data
+  - Repository
+  - Open Access
+  - Archive
+  properties:
+  - type: Documentation
+    url: https://tu-dresden.de/zih/forschung/projekte/opara
+- aid: tu-dresden:tu-dresden-authority-search-api
+  name: TU Dresden authority_search API
+  description: Authority Provider Identifier Search
+  humanURL: https://vvz.phil.tu-dresden.de/api
+  baseURL: https://vvz.phil.tu-dresden.de/api
+  tags:
+  - authority_search
+  properties:
+  - type: OpenAPI
+    url: openapi/tu-dresden-authority-search-api-openapi.yml
+  - type: Documentation
+    url: https://data.slub-dresden.de/doc/swagger_api
+  - type: GitHub
+    url: https://github.com/slub/data.slub-dresden.de
+  - type: JSONSchema
+    url: json-schema/tu-dresden-entity-schema.json
+  - type: JSONStructure
+    url: json-structure/tu-dresden-entity-structure.json
+  - type: x-json-ld
+    url: json-ld/tu-dresden-context.jsonld
+  - type: x-vocabulary
+    url: vocabulary/tu-dresden-vocabulary.yml
+  - type: x-spectral-rules
+    url: rules/tu-dresden-rules.yml
+  - type: x-example
+    url: examples/tu-dresden-search-example.json
+  - type: x-example
+    url: examples/tu-dresden-entity-example.json
+- aid: tu-dresden:tu-dresden-explorative-search-api
+  name: TU Dresden explorative search API
+  description: API endpoint to be use with the explorative search webapp
+  humanURL: https://vvz.phil.tu-dresden.de/api
+  baseURL: https://vvz.phil.tu-dresden.de/api
+  tags:
+  - explorative search
+  properties:
+  - type: OpenAPI
+    url: openapi/tu-dresden-explorative-search-api-openapi.yml
+  - type: Documentation
+    url: https://data.slub-dresden.de/doc/swagger_api
+  - type: GitHub
+    url: https://github.com/slub/data.slub-dresden.de
+  - type: JSONSchema
+    url: json-schema/tu-dresden-entity-schema.json
+  - type: JSONStructure
+    url: json-structure/tu-dresden-entity-structure.json
+  - type: x-json-ld
+    url: json-ld/tu-dresden-context.jsonld
+  - type: x-vocabulary
+    url: vocabulary/tu-dresden-vocabulary.yml
+  - type: x-spectral-rules
+    url: rules/tu-dresden-rules.yml
+  - type: x-example
+    url: examples/tu-dresden-search-example.json
+  - type: x-example
+    url: examples/tu-dresden-entity-example.json
+- aid: tu-dresden:tu-dresden-reconcile-api
+  name: TU Dresden reconcile API
+  description: Openrefine Reconcilation and Data Extension Operations
+  humanURL: https://vvz.phil.tu-dresden.de/api
+  baseURL: https://vvz.phil.tu-dresden.de/api
+  tags:
+  - reconcile
+  properties:
+  - type: OpenAPI
+    url: openapi/tu-dresden-reconcile-api-openapi.yml
+  - type: Documentation
+    url: https://data.slub-dresden.de/doc/swagger_api
+  - type: GitHub
+    url: https://github.com/slub/data.slub-dresden.de
+  - type: JSONSchema
+    url: json-schema/tu-dresden-entity-schema.json
+  - type: JSONStructure
+    url: json-structure/tu-dresden-entity-structure.json
+  - type: x-json-ld
+    url: json-ld/tu-dresden-context.jsonld
+  - type: x-vocabulary
+    url: vocabulary/tu-dresden-vocabulary.yml
+  - type: x-spectral-rules
+    url: rules/tu-dresden-rules.yml
+  - type: x-example
+    url: examples/tu-dresden-search-example.json
+  - type: x-example
+    url: examples/tu-dresden-entity-example.json
+- aid: tu-dresden:tu-dresden-search-and-access-api
+  name: TU Dresden search and access API
+  description: Search and Access Operations
+  humanURL: https://vvz.phil.tu-dresden.de/api
+  baseURL: https://vvz.phil.tu-dresden.de/api
+  tags:
+  - search and access
+  properties:
+  - type: OpenAPI
+    url: openapi/tu-dresden-search-and-access-api-openapi.yml
+  - type: Documentation
+    url: https://data.slub-dresden.de/doc/swagger_api
+  - type: GitHub
+    url: https://github.com/slub/data.slub-dresden.de
+  - type: JSONSchema
+    url: json-schema/tu-dresden-entity-schema.json
+  - type: JSONStructure
+    url: json-structure/tu-dresden-entity-structure.json
+  - type: x-json-ld
+    url: json-ld/tu-dresden-context.jsonld
+  - type: x-vocabulary
+    url: vocabulary/tu-dresden-vocabulary.yml
+  - type: x-spectral-rules
+    url: rules/tu-dresden-rules.yml
+  - type: x-example
+    url: examples/tu-dresden-search-example.json
+  - type: x-example
+    url: examples/tu-dresden-entity-example.json
+- aid: tu-dresden:tu-dresden-source-api
+  name: TU Dresden source API
+  description: Source data access operation
+  humanURL: https://vvz.phil.tu-dresden.de/api
+  baseURL: https://vvz.phil.tu-dresden.de/api
+  tags:
+  - source
+  properties:
+  - type: OpenAPI
+    url: openapi/tu-dresden-source-api-openapi.yml
+  - type: Documentation
+    url: https://data.slub-dresden.de/doc/swagger_api
+  - type: GitHub
+    url: https://github.com/slub/data.slub-dresden.de
+  - type: JSONSchema
+    url: json-schema/tu-dresden-entity-schema.json
+  - type: JSONStructure
+    url: json-structure/tu-dresden-entity-structure.json
+  - type: x-json-ld
+    url: json-ld/tu-dresden-context.jsonld
+  - type: x-vocabulary
+    url: vocabulary/tu-dresden-vocabulary.yml
+  - type: x-spectral-rules
+    url: rules/tu-dresden-rules.yml
+  - type: x-example
+    url: examples/tu-dresden-search-example.json
+  - type: x-example
+    url: examples/tu-dresden-entity-example.json
 common:
   - type: AgenticAccess
     url: agentic-access/tu-dresden-agentic-access.yml
