@@ -1,0 +1,22 @@
+{
+  "provider": "tu-dresden",
+  "sources": [
+    "tu-dresden-authority-search-api-openapi.yml",
+    "tu-dresden-explorative-search-api-openapi.yml",
+    "tu-dresden-reconcile-api-openapi.yml",
+    "tu-dresden-search-and-access-api-openapi.yml",
+    "tu-dresden-source-api-openapi.yml"
+  ],
+  "outputs": [
+    "tu-dresden-authority-search-api-openapi.yml",
+    "tu-dresden-explorative-search-api-openapi.yml",
+    "tu-dresden-reconcile-api-openapi.yml",
+    "tu-dresden-search-and-access-api-openapi.yml",
+    "tu-dresden-source-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
