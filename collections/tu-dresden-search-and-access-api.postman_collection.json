@@ -1,0 +1,550 @@
+{
+  "item": [
+    {
+      "id": "ce74bd39-e482-4805-8752-a5fc2db0d263",
+      "name": "search and access",
+      "description": {
+        "content": "Search and Access Operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0f2e1ff8-d94a-4d78-8e2f-cf68a1b50402",
+          "name": "search over all entity-indices",
+          "request": {
+            "name": "search over all entity-indices",
+            "description": {},
+            "url": {
+              "path": [
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Lucene Query String Search Parameter"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "set the Content-Type over this Query-Parameter. Allowed: nt, rdf, ttl, nq, jsonl, json"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "how to sort the returned datasets. like: path_to_property:[asc|desc]"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<integer>",
+                  "description": "Configure the maxmimum amount of hits to be returned"
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<integer>",
+                  "description": "Configure the offset from the frist result you want to fetch"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "filter the search by a defined value in a path. e.g. path_to_property:value"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ef0900fe-f341-468d-a599-c0a43ab1f48d",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0aaaa03f-a675-4f89-afb1-664607d71227",
+              "name": "Record(s) not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "19926478-7d64-4511-bb20-5a47adfa7afd",
+          "name": "search on one given entity-index",
+          "request": {
+            "name": "search on one given entity-index",
+            "description": {},
+            "url": {
+              "path": [
+                ":entity_type",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Lucene Query String Search Parameter"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "set the Content-Type over this Query-Parameter. Allowed: nt, rdf, ttl, nq, jsonl, json"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "100",
+                  "description": "Configure the maxmimum amount of hits to be returned"
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "0",
+                  "description": "Configure the offset from the frist result you want to fetch"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "how to sort the returned datasets. like: path_to_property:[asc|desc]"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "filter the search by a defined value in a path. e.g. path_to_property:value"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entity_type",
+                  "description": "(Required) The name of the entity-type to access. Allowed Values: ['organizations', 'persons', 'resources', 'works', 'events', 'topics', 'geo']."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "84f7a43c-df64-4795-94de-629d28ad95c3",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":entity_type",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "from",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entity_type",
+                      "description": "(Required) The name of the entity-type to access. Allowed Values: ['organizations', 'persons', 'resources', 'works', 'events', 'topics', 'geo']."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2ce429ac-fe2f-4c5c-83db-e11b908b0573",
+              "name": "Record(s) not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":entity_type",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "from",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entity_type",
+                      "description": "(Required) The name of the entity-type to access. Allowed Values: ['organizations', 'persons', 'resources', 'works', 'events', 'topics', 'geo']."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "86bc2e80-8154-41e2-b46b-b083e3f3652c",
+          "name": "get a single record of an entity-index, or search for all records containing this record as an attribute via isAttr parameter",
+          "request": {
+            "name": "get a single record of an entity-index, or search for all records containing this record as an attribute via isAttr parameter",
+            "description": {},
+            "url": {
+              "path": [
+                ":entity_type",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "set the Content-Type over this Query-Parameter. Allowed: nt, rdf, ttl, nq, jsonl, json"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID-String of the record to access. Possible Values (examples): 118695940, 130909696"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entity_type",
+                  "description": "(Required) The name of the entity-type to access. Allowed Values: ['organizations', 'persons', 'resources', 'works', 'events', 'topics', 'geo']."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "61ed6daa-6724-4591-a92f-199dbcf8066f",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":entity_type",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID-String of the record to access. Possible Values (examples): 118695940, 130909696"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entity_type",
+                      "description": "(Required) The name of the entity-type to access. Allowed Values: ['organizations', 'persons', 'resources', 'works', 'events', 'topics', 'geo']."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5bbce588-6304-4191-b695-6ec8be4e50f1",
+              "name": "Record(s) not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":entity_type",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID-String of the record to access. Possible Values (examples): 118695940, 130909696"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entity_type",
+                      "description": "(Required) The name of the entity-type to access. Allowed Values: ['organizations', 'persons', 'resources', 'works', 'events', 'topics', 'geo']."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://data.slub-dresden.de",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6b1566e1-82b8-4393-8a04-f4a3dbb285b1",
+    "name": "LOD authority_search search and access API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Linked Open Data API published by the Saxony State and University Library (SLUB Dresden), which serves TU Dresden. Provides bibliographic and authority data (resources, persons, organizations, events, topics, works, geo) aggregated from K10Plus/SWB, GND and Wikidata, with search, source, reconcile and entity-lookup endpoints. Converted faithfully from the publicly served Swagger 2.0 document at https://data.slub-dresden.de/swagger.json",
+      "type": "text/plain"
+    }
+  }
+}

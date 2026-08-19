@@ -1,0 +1,153 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LOD authority_search search and access API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "search and access",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "search over all entity-indices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.slub-dresden.de/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Lucene Query String Search Parameter"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "set the Content-Type over this Query-Parameter. Allowed: nt, rdf, ttl, nq, jsonl, json"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "how to sort the returned datasets. like: path_to_property:[asc|desc]"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Configure the maxmimum amount of hits to be returned"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Configure the offset from the frist result you want to fetch"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "filter the search by a defined value in a path. e.g. path_to_property:value"
+              }
+            ]
+          },
+          "docs": "search over all entity-indices"
+        },
+        {
+          "info": {
+            "name": "search on one given entity-index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.slub-dresden.de/:entity_type/search",
+            "params": [
+              {
+                "name": "entity_type",
+                "value": "",
+                "type": "path",
+                "description": "The name of the entity-type to access. Allowed Values: ['organizations', 'persons', 'resources', 'works', 'events', 'topics', 'geo']."
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Lucene Query String Search Parameter"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "set the Content-Type over this Query-Parameter. Allowed: nt, rdf, ttl, nq, jsonl, json"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Configure the maxmimum amount of hits to be returned"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Configure the offset from the frist result you want to fetch"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "how to sort the returned datasets. like: path_to_property:[asc|desc]"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "filter the search by a defined value in a path. e.g. path_to_property:value"
+              }
+            ]
+          },
+          "docs": "search on one given entity-index"
+        },
+        {
+          "info": {
+            "name": "get a single record of an entity-index, or search for all records containing this record as an attribute via isAttr parameter",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.slub-dresden.de/:entity_type/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID-String of the record to access. Possible Values (examples): 118695940, 130909696"
+              },
+              {
+                "name": "entity_type",
+                "value": "",
+                "type": "path",
+                "description": "The name of the entity-type to access. Allowed Values: ['organizations', 'persons', 'resources', 'works', 'events', 'topics', 'geo']."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "set the Content-Type over this Query-Parameter. Allowed: nt, rdf, ttl, nq, jsonl, json"
+              }
+            ]
+          },
+          "docs": "get a single record of an entity-index, or search for all records containing this record as an attribute via isAttr parameter"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1253 @@
+{
+  "item": [
+    {
+      "id": "c92b0095-ac86-49c5-bdd3-a2fe289d161a",
+      "name": "reconcile",
+      "description": {
+        "content": "Openrefine Reconcilation and Data Extension Operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "68dda116-9cd7-4754-b2f1-ef20a86fd9c8",
+          "name": "OpenRefine Reconcilation Service API",
+          "request": {
+            "name": "OpenRefine Reconcilation Service API",
+            "description": {
+              "content": "https://github.com/OpenRefine/OpenRefine/wiki/Reconciliation-Service-API",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reconcile",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1759a33d-5fd5-4ac8-a3c2-135660dd13a7",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reconcile",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8707dbfe-7ec0-48f2-b6de-b157b01e9965",
+              "name": "Check your JSON",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reconcile",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "692d3203-14ff-4ec6-a2a3-6f4a618edac1",
+              "name": "Record(s) not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reconcile",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c43e0371-30b3-43d4-9091-ee47ecb60441",
+          "name": "OpenRefine Reconcilation Service API",
+          "request": {
+            "name": "OpenRefine Reconcilation Service API",
+            "description": {
+              "content": "https://github.com/OpenRefine/OpenRefine/wiki/Reconciliation-Service-API",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reconcile",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0d6a54ad-8467-496d-becb-78c30821bb33",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reconcile",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "343b514b-4bcf-4d4a-b906-afff0cfa1f16",
+          "name": "Openrefine Suggest-API suggest Entry Point",
+          "request": {
+            "name": "Openrefine Suggest-API suggest Entry Point",
+            "description": {
+              "content": "https://github.com/OpenRefine/OpenRefine/wiki/Suggest-API",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reconcile",
+                "flyout",
+                "entity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "the identifier of the entity to render"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "993cc551-a406-44fd-ba30-07dc7c5d8acc",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reconcile",
+                    "flyout",
+                    "entity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c650a0e6-2cad-4dba-ab82-ac83c29c0530",
+              "name": "Check your ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reconcile",
+                    "flyout",
+                    "entity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c8415f96-73a3-4527-9c3a-e3815f10d183",
+              "name": "Type not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reconcile",
+                    "flyout",
+                    "entity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34b216a6-c6b5-415f-83f2-db517643cfa3",
+          "name": "Openrefine Suggest-API suggest Entry Point",
+          "request": {
+            "name": "Openrefine Suggest-API suggest Entry Point",
+            "description": {
+              "content": "https://github.com/OpenRefine/OpenRefine/wiki/Suggest-API",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reconcile",
+                "flyout",
+                "property"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "the identifier of the property to render"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5dcb6309-2898-4364-b74c-bcec8b21fb1f",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reconcile",
+                    "flyout",
+                    "property"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "72ed84a8-e8c3-4f99-865e-148996508a92",
+              "name": "Type not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reconcile",
+                    "flyout",
+                    "property"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2a510ddb-19c5-430b-a8bc-69639acdd048",
+          "name": "Openrefine Suggest-API suggest Entry Point",
+          "request": {
+            "name": "Openrefine Suggest-API suggest Entry Point",
+            "description": {
+              "content": "https://github.com/OpenRefine/OpenRefine/wiki/Suggest-API",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reconcile",
+                "flyout",
+                "type"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "the identifier of the type to render"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "57196940-f687-4762-b500-26bcc2f6a7e4",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reconcile",
+                    "flyout",
+                    "type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "16ab6829-4634-43f2-a90e-c8ddd63f9ec8",
+              "name": "Check your ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reconcile",
+                    "flyout",
+                    "type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cffb1958-ce9b-4587-9fcf-b88d03edbd48",
+              "name": "Type not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reconcile",
+                    "flyout",
+                    "type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f51d8253-7c42-4606-9738-d38fed442f6d",
+          "name": "Openrefine Data-Extension-API",
+          "request": {
+            "name": "Openrefine Data-Extension-API",
+            "description": {
+              "content": "https://github.com/OpenRefine/OpenRefine/wiki/Data-Extension-API",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reconcile",
+                "properties"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "queries",
+                  "value": "<string>",
+                  "description": "OpenRefine Reconcilation API Call for Multiple Queries"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "type string"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<string>",
+                  "description": "how many properties shall be returned"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d7d928f1-6bca-4c7d-9e63-88d826b77b2f",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reconcile",
+                    "properties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "queries",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "74ea749d-5509-4ee2-9667-fb882bff812b",
+              "name": "Check your Limit",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reconcile",
+                    "properties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "queries",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2994dbc0-90a1-4c6a-bf36-7415a33d3ed9",
+              "name": "Type not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reconcile",
+                    "properties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "queries",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "477f6334-d4c4-4aeb-871c-1a0d256c149b",
+          "name": "Openrefine Suggest-API suggest Entry Point",
+          "request": {
+            "name": "Openrefine Suggest-API suggest Entry Point",
+            "description": {
+              "content": "https://github.com/OpenRefine/OpenRefine/wiki/Suggest-API",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reconcile",
+                "suggest",
+                "entity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "prefix",
+                  "value": "<string>",
+                  "description": "a string the user has typed"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "54c1b9e3-ec24-481e-a5ab-8f610cfcf5f0",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reconcile",
+                    "suggest",
+                    "entity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "prefix",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "373351cb-fd4f-4c94-a934-49c6c361c82a",
+              "name": "Check your Limit",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reconcile",
+                    "suggest",
+                    "entity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "prefix",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9ce4191c-3697-4b14-8857-794d84044d8e",
+              "name": "Type not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reconcile",
+                    "suggest",
+                    "entity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "prefix",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df1a4c3f-a1cd-4b39-ab60-bddddb46e3d8",
+          "name": "Openrefine Suggest-API suggest Entry Point",
+          "request": {
+            "name": "Openrefine Suggest-API suggest Entry Point",
+            "description": {
+              "content": "https://github.com/OpenRefine/OpenRefine/wiki/Suggest-API",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reconcile",
+                "suggest",
+                "property"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "prefix",
+                  "value": "<string>",
+                  "description": "a string the user has typed"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b110a0e5-82cd-49c8-b468-04ffdfef4261",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reconcile",
+                    "suggest",
+                    "property"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "prefix",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1a0bd832-efe0-4b55-b3ba-7f3246cf75be",
+              "name": "Check your Limit",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reconcile",
+                    "suggest",
+                    "property"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "prefix",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e0d4191a-051d-4584-b609-2611575e4a95",
+              "name": "Type not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reconcile",
+                    "suggest",
+                    "property"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "prefix",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a48c35c0-0ea7-4454-af21-003d33f796e0",
+          "name": "Openrefine Suggest-API suggest Entry Point",
+          "request": {
+            "name": "Openrefine Suggest-API suggest Entry Point",
+            "description": {
+              "content": "https://github.com/OpenRefine/OpenRefine/wiki/Suggest-API",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reconcile",
+                "suggest",
+                "type"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "prefix",
+                  "value": "<string>",
+                  "description": "a string the user has typed"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4aa53ade-0d36-4cc6-8422-bbcd01730498",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reconcile",
+                    "suggest",
+                    "type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "prefix",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b8aaef82-9f01-4cbb-8f19-1a6163130f2e",
+              "name": "Check your Limit",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reconcile",
+                    "suggest",
+                    "type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "prefix",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3553b9f1-e2d6-43dd-b714-14558f0d84bf",
+              "name": "Type not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reconcile",
+                    "suggest",
+                    "type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "prefix",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://data.slub-dresden.de",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a9522d0d-5c67-40ea-a9f5-138c03298e6b",
+    "name": "LOD authority_search reconcile API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Linked Open Data API published by the Saxony State and University Library (SLUB Dresden), which serves TU Dresden. Provides bibliographic and authority data (resources, persons, organizations, events, topics, works, geo) aggregated from K10Plus/SWB, GND and Wikidata, with search, source, reconcile and entity-lookup endpoints. Converted faithfully from the publicly served Swagger 2.0 document at https://data.slub-dresden.de/swagger.json",
+      "type": "text/plain"
+    }
+  }
+}

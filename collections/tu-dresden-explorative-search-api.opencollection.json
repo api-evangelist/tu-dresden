@@ -1,0 +1,99 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LOD authority_search explorative search API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "explorative search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "aggregate topAuthors, datePublished and relatedTopics around topics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.slub-dresden.de/explore/aggregations",
+            "params": [
+              {
+                "name": "topics",
+                "value": "",
+                "type": "query",
+                "description": "multiple topics to aggregate"
+              },
+              {
+                "name": "contributor",
+                "value": "",
+                "type": "query",
+                "description": "use this specific contributor name as filter for the aggregation result"
+              },
+              {
+                "name": "restrict",
+                "value": "",
+                "type": "query",
+                "description": "restrict all topic queries to occurrences with this restriction-topic"
+              }
+            ]
+          },
+          "docs": "aggregate topAuthors, datePublished and relatedTopics around topics"
+        },
+        {
+          "info": {
+            "name": "correlate topics with their mutual occurances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.slub-dresden.de/explore/correlations",
+            "params": [
+              {
+                "name": "topics",
+                "value": "",
+                "type": "query",
+                "description": "multiple topics to correlate"
+              }
+            ]
+          },
+          "docs": "correlate topics with their mutual occurances"
+        },
+        {
+          "info": {
+            "name": "perform a simple search on the topics index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.slub-dresden.de/explore/topicsearch",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "query string to search"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "size of the response"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "list of internal elasticsearch fields to query against."
+              }
+            ]
+          },
+          "docs": "perform a simple search on the topics index"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

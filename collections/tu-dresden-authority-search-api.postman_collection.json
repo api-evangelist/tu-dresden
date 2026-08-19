@@ -1,0 +1,410 @@
+{
+  "item": [
+    {
+      "id": "d75b88c9-3a03-4d43-a390-33ec70c4876e",
+      "name": "authority_search",
+      "description": {
+        "content": "Authority Provider Identifier Search",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2c9529a5-0985-4be7-b981-726466fd2026",
+          "name": "search for an given ID of a given authority-provider on a given entity-index",
+          "request": {
+            "name": "search for an given ID of a given authority-provider on a given entity-index",
+            "description": {},
+            "url": {
+              "path": [
+                ":authority_provider",
+                ":entity_type",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "set the Content-Type over this Query-Parameter. Allowed: nt, rdf, ttl, nq, jsonl, json"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "100",
+                  "description": "Configure the maxmimum amount of hits to be returned"
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "0",
+                  "description": "Configure the offset from the frist result you want to fetch"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID-String of the authority-identifier to access. Possible Values (examples): 208922695, 118695940, 20474817, Q1585819"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entity_type",
+                  "description": "(Required) The name of the entity-index to access. Allowed Values: ['organizations', 'persons', 'resources', 'works', 'events', 'topics', 'geo']."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "authority_provider",
+                  "description": "(Required) The name of the authority-provider to access. Allowed Values: ['filmportal.de', 'swb', 'wd', 'isni', 'lc', 'orcid', 'gnd', 'viaf']."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "51563b35-c491-4be3-bd99-5138879a3013",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":authority_provider",
+                    ":entity_type",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "from",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID-String of the authority-identifier to access. Possible Values (examples): 208922695, 118695940, 20474817, Q1585819"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entity_type",
+                      "description": "(Required) The name of the entity-index to access. Allowed Values: ['organizations', 'persons', 'resources', 'works', 'events', 'topics', 'geo']."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "authority_provider",
+                      "description": "(Required) The name of the authority-provider to access. Allowed Values: ['filmportal.de', 'swb', 'wd', 'isni', 'lc', 'orcid', 'gnd', 'viaf']."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9c81767d-6cb9-4a8d-b7a0-8c06e4942598",
+              "name": "Record(s) not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":authority_provider",
+                    ":entity_type",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "from",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID-String of the authority-identifier to access. Possible Values (examples): 208922695, 118695940, 20474817, Q1585819"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entity_type",
+                      "description": "(Required) The name of the entity-index to access. Allowed Values: ['organizations', 'persons', 'resources', 'works', 'events', 'topics', 'geo']."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "authority_provider",
+                      "description": "(Required) The name of the authority-provider to access. Allowed Values: ['filmportal.de', 'swb', 'wd', 'isni', 'lc', 'orcid', 'gnd', 'viaf']."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "92f818bb-f354-4a2c-951b-2385bb7638ab",
+          "name": "search for an given ID of a given authority-provider",
+          "request": {
+            "name": "search for an given ID of a given authority-provider",
+            "description": {},
+            "url": {
+              "path": [
+                ":authority_provider",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "set the Content-Type over this Query-Parameter. Allowed: nt, rdf, ttl, nq, jsonl, json"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "100",
+                  "description": "Configure the maxmimum amount of hits to be returned"
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "0",
+                  "description": "Configure the offset from the frist result you want to fetch"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID-String of the authority-identifier to access. Possible Values (examples): 208922695, 118695940, 20474817, Q1585819"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "authority_provider",
+                  "description": "(Required) The name of the authority-provider to access. Allowed Values: ['filmportal.de', 'swb', 'wd', 'isni', 'lc', 'orcid', 'gnd', 'viaf']."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ce61fa41-b80c-437e-bc74-cdecdf6f75a9",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":authority_provider",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "from",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID-String of the authority-identifier to access. Possible Values (examples): 208922695, 118695940, 20474817, Q1585819"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "authority_provider",
+                      "description": "(Required) The name of the authority-provider to access. Allowed Values: ['filmportal.de', 'swb', 'wd', 'isni', 'lc', 'orcid', 'gnd', 'viaf']."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "31cfc56e-0ef1-4f36-bb4b-0fc6f02037e2",
+              "name": "Record(s) not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":authority_provider",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "from",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID-String of the authority-identifier to access. Possible Values (examples): 208922695, 118695940, 20474817, Q1585819"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "authority_provider",
+                      "description": "(Required) The name of the authority-provider to access. Allowed Values: ['filmportal.de', 'swb', 'wd', 'isni', 'lc', 'orcid', 'gnd', 'viaf']."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://data.slub-dresden.de",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0ec5ee7c-5d12-4d11-a1d1-dda37831eb74",
+    "name": "LOD authority_search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Linked Open Data API published by the Saxony State and University Library (SLUB Dresden), which serves TU Dresden. Provides bibliographic and authority data (resources, persons, organizations, events, topics, works, geo) aggregated from K10Plus/SWB, GND and Wikidata, with search, source, reconcile and entity-lookup endpoints. Converted faithfully from the publicly served Swagger 2.0 document at https://data.slub-dresden.de/swagger.json",
+      "type": "text/plain"
+    }
+  }
+}

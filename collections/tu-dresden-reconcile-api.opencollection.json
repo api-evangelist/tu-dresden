@@ -1,0 +1,189 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LOD authority_search reconcile API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "reconcile",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "OpenRefine Reconcilation Service API",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.slub-dresden.de/reconcile/"
+          },
+          "docs": "https://github.com/OpenRefine/OpenRefine/wiki/Reconciliation-Service-API"
+        },
+        {
+          "info": {
+            "name": "OpenRefine Reconcilation Service API",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://data.slub-dresden.de/reconcile/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "https://github.com/OpenRefine/OpenRefine/wiki/Reconciliation-Service-API"
+        },
+        {
+          "info": {
+            "name": "Openrefine Suggest-API suggest Entry Point",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.slub-dresden.de/reconcile/flyout/entity",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "the identifier of the entity to render"
+              }
+            ]
+          },
+          "docs": "https://github.com/OpenRefine/OpenRefine/wiki/Suggest-API"
+        },
+        {
+          "info": {
+            "name": "Openrefine Suggest-API suggest Entry Point",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.slub-dresden.de/reconcile/flyout/property",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "the identifier of the property to render"
+              }
+            ]
+          },
+          "docs": "https://github.com/OpenRefine/OpenRefine/wiki/Suggest-API"
+        },
+        {
+          "info": {
+            "name": "Openrefine Suggest-API suggest Entry Point",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.slub-dresden.de/reconcile/flyout/type",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "the identifier of the type to render"
+              }
+            ]
+          },
+          "docs": "https://github.com/OpenRefine/OpenRefine/wiki/Suggest-API"
+        },
+        {
+          "info": {
+            "name": "Openrefine Data-Extension-API",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.slub-dresden.de/reconcile/properties",
+            "params": [
+              {
+                "name": "queries",
+                "value": "",
+                "type": "query",
+                "description": "OpenRefine Reconcilation API Call for Multiple Queries"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "type string"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "how many properties shall be returned"
+              }
+            ]
+          },
+          "docs": "https://github.com/OpenRefine/OpenRefine/wiki/Data-Extension-API"
+        },
+        {
+          "info": {
+            "name": "Openrefine Suggest-API suggest Entry Point",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.slub-dresden.de/reconcile/suggest/entity",
+            "params": [
+              {
+                "name": "prefix",
+                "value": "",
+                "type": "query",
+                "description": "a string the user has typed"
+              }
+            ]
+          },
+          "docs": "https://github.com/OpenRefine/OpenRefine/wiki/Suggest-API"
+        },
+        {
+          "info": {
+            "name": "Openrefine Suggest-API suggest Entry Point",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.slub-dresden.de/reconcile/suggest/property",
+            "params": [
+              {
+                "name": "prefix",
+                "value": "",
+                "type": "query",
+                "description": "a string the user has typed"
+              }
+            ]
+          },
+          "docs": "https://github.com/OpenRefine/OpenRefine/wiki/Suggest-API"
+        },
+        {
+          "info": {
+            "name": "Openrefine Suggest-API suggest Entry Point",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.slub-dresden.de/reconcile/suggest/type",
+            "params": [
+              {
+                "name": "prefix",
+                "value": "",
+                "type": "query",
+                "description": "a string the user has typed"
+              }
+            ]
+          },
+          "docs": "https://github.com/OpenRefine/OpenRefine/wiki/Suggest-API"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
