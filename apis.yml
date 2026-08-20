@@ -117,7 +117,8 @@ apis:
   description: Authority Provider Identifier Search
   humanURL: https://vvz.phil.tu-dresden.de/api
   baseURL: https://vvz.phil.tu-dresden.de/api
-  tags:
+  tags: []
+  tags_raw:
   - authority_search
   properties:
   - type: OpenAPI
@@ -230,6 +231,8 @@ apis:
   humanURL: https://vvz.phil.tu-dresden.de/api
   baseURL: https://vvz.phil.tu-dresden.de/api
   tags:
+  - Source
+  tags_raw:
   - source
   properties:
   - type: OpenAPI
