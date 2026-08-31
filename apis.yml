@@ -1,293 +1,564 @@
 ---
 aid: tu-dresden
 name: TU Dresden
+x-type: university
+x-category: Technical University
 description: >-
-  Technische Universität Dresden (TU Dresden) is one of Germany's leading
-  research universities and a member of the German Universities Excellence
-  Initiative, located in Dresden, Saxony. It ranks #234 in the QS World
-  University Rankings 2025. Its public developer/API footprint is modest and
-  largely tied to academic infrastructure: a gated lecture-catalog (course
-  directory) JSON API, the Shibboleth SAML-based single sign-on identity
-  provider operated by the Center for Information Services and High Performance
-  Computing (ZIH), the OpARA research-data repository, and the Qucosa document
-  server which exposes an OAI-PMH interface. The Saxony State and University
-  Library (SLUB Dresden), which serves the university, additionally publishes a
-  documented Linked Open Data API for bibliographic and authority data.
+  Technische Universität Dresden (TUD) is a German public technical university in Dresden, Saxony,
+  a member of TU9 and one of the institutions funded under the German Universities Excellence
+  Strategy. Re-profiled on 2026-08-30 under the API Evangelist university pipeline, which settles
+  WHO OPERATES a surface before crediting it to the institution. The June 2026 profile credited TU
+  Dresden with five OpenAPI contracts and five extra apis[] entries; all five were one document —
+  the Linked Open Data API of the Sächsische Landesbibliothek – Staats- und Universitätsbibliothek
+  Dresden (SLUB), a separate Saxon state institution, served from data.slub-dresden.de and split
+  by tag into five apparent surfaces. Worse, every one of those entries carried a baseURL of
+  vvz.phil.tu-dresden.de, a host the specs never mention, which is why a hostname-based audit read
+  them as institution-owned. Those contracts and the twenty-two schema, structure, JSON-LD,
+  vocabulary, ruleset, example, collection and agentic-access artifacts derived from them have
+  been removed. What is left is what TU Dresden actually runs, and it is more than the old profile
+  showed. The headline find is TUD:AI at llm.scads.ai/v1 — an OpenAI-compatible LLM inference API
+  operated by ZIH and ScaDS.AI Dresden/Leipzig on TU Dresden's own network, keyed from the
+  university's Self-Service Portal, serving nine open-weight chat models plus embedding, audio and
+  image endpoints. Alongside it: OPARA, the DSpace 7.6.2 research-data repository TU Dresden
+  operates for four Saxon institutions, with an open REST API and an OAI-PMH interface; the
+  university's own Shibboleth identity provider, registered in DFN-AAI and exported to eduGAIN,
+  which now also serves OpenID Connect discovery and a JWKS; and the gated lecture-directory JSON
+  API of the Faculty of Arts. Two surfaces are real institutional facts running on somebody else's
+  engineering: the Pure-based research information system at fis.tu-dresden.de and the TU Dresden
+  view of the SLUB-operated Qucosa document server. TU Dresden publishes no OpenAPI of its own, no
+  developer portal, no open data portal and no llms.txt — but it does publish a security.txt, and
+  it holds its own DataCite membership and DOI prefix.
 type: Index
 deliveryModel:
   model: saas
   open_source: false
-  commercial: true
+  commercial: false
   callable_host: true
-  label: Hosted service · you call their endpoint
+  label: Hosted service · you call their endpoint · affiliation required
   confidence: high
   source:
-  - openapi
-  - pricing
-  generated: '2026-08-28'
-  method: derived
+  - authentication
+  - plans
+  generated: '2026-08-30'
+  method: probed
 accessModel:
   pricing: free
-  onboarding: unknown
+  onboarding: affiliation
   trial: false
   try_now: false
   public: false
-  label: Free
-  confidence: medium
+  label: Free to TU Dresden affiliates · no public signup
+  confidence: high
   source:
+  - authentication
   - plans
-  generated: '2026-07-22'
-  method: derived
-position: Consumer
-access: 3rd-Party
+  generated: '2026-08-30'
+  method: probed
+position: Provider
+access: Private
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/tu-dresden.png
 url: https://raw.githubusercontent.com/api-evangelist/tu-dresden/refs/heads/main/apis.yml
 tags:
-  - Education
-  - Higher Education
-  - University
-  - Research
-  - Open Data
-  - Library
-  - Germany
+- University
+- Higher Education
+- Education
+- Germany
+- Saxony
+- TU9
+- Research
+- Research Data
+- Research Computing
+- Artificial Intelligence
+- Identity Federation
+- OAI-PMH
+- Institutional Repository
+- Open Access
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-08-30'
 specificationVersion: '0.23'
+x-coverage:
+  state: gated
+  reason: auth_required
+  detail: >-
+    TU Dresden operates five surfaces of its own and four of the five require an institutional
+    credential, which is the normal shape for a German university and is a finding about the
+    institution, not about us. Nothing blocked the probe: more than sixty hosts and paths were
+    fetched successfully with a browser User-Agent, every status code below was observed live, and
+    the thinness that remains is real. Verified institution-operated and live: TUD:AI at
+    https://llm.scads.ai/v1/models answers with a LiteLLM auth_error envelope for a missing key
+    and a DIFFERENT envelope naming a key hash for an invalid one, which proves the token is
+    validated rather than merely required; llm.scads.ai resolves to 141.76.18.84 and
+    141.76.19.193, inside the RIPE allocation 141.76.0.0/16 netname TUDINF-LAN, org "Technische
+    Universitaet Dresden", and keys are issued from
+    https://selfservice.tu-dresden.de/services/scads-llm-api/ with support at
+    llm.scads.ai@tu-dresden.de. OPARA answers anonymously at
+    https://opara.zih.tu-dresden.de/server/api with a DSpace 7.6.2 HAL root document and at
+    /server/oai/request with a valid OAI-PMH 2.0 Identify naming adminEmail
+    servicedesk@tu-dresden.de and twelve metadata prefixes. https://idp.tu-dresden.de/idp/shibboleth
+    serves DFN-AAI-registered SAML metadata and /.well-known/openid-configuration plus
+    /idp/profile/oidc/keyset now serve OIDC — correcting the June profile, which recorded OIDC as
+    "planned but not yet available". https://vvz.phil.tu-dresden.de/api?auth_code=test returns
+    "Der Auth-Code ist leider nicht richtig." under a 200. Verified live but tenant-operated:
+    fis.tu-dresden.de is Elsevier Pure (a PureFacade marker in the portal HTML; /ws/api,
+    /ws/oai and /ws/rest all answer 403 while /portal/ws/api answers 404), and
+    https://tud.qucosa.de/oai/?verb=Identify returns an OAI-PMH envelope whose request element
+    names the backend http://sdvcmr-prod-oai01.slub-dresden.de:8080/oai/ and whose adminEmail is
+    qucosa-it@slub-dresden.de, with the DataCite client for it registered as tbyu.ozzulw under
+    SLUB's provider TBYU. Removed as another institution's: the five SLUB LOD contracts at
+    data.slub-dresden.de — SLUB is a Saxon state library that serves TU Dresden under agreement,
+    it holds its own Crossref membership (26325) and its own DataCite provider symbol (TBYU), and
+    its API is not TU Dresden's engineering. Not TU Dresden's either: OPAL at
+    bildungsportal.sachsen.de, the Saxony-wide LMS run by BPS Bildungsportal Sachsen GmbH, and the
+    Mensa API at studentenwerk-dresden.de, run by the student services organisation. Confirmed
+    absent by DNS: data.tu-dresden.de, api.tu-dresden.de, opendata.tu-dresden.de,
+    developer.tu-dresden.de, gitlab.tu-dresden.de, elearning.tu-dresden.de, status.tu-dresden.de,
+    chat.zih.tu-dresden.de and ki.tu-dresden.de all fail to resolve. Confirmed absent by fetch:
+    https://tu-dresden.de/llms.txt 404, https://llm.scads.ai/v1/openapi.json 404, and
+    github.com/tu-dresden holds a single repository. The one contract that is publicly served —
+    https://llm.scads.ai/openapi.json — is LiteLLM's own generic proxy specification, titled
+    "LiteLLM API", and is deliberately not saved here for the same reason the SLUB contracts were
+    removed.
+  assessed: '2026-08-30'
+  method: pipeline-university
+  evidence:
+  - url: https://llm.scads.ai/v1/models
+    status: 500
+  - url: https://llm.scads.ai/docs/
+    status: 200
+  - url: https://llm.scads.ai/docs/usage/api/
+    status: 200
+  - url: https://llm.scads.ai/docs/models/
+    status: 200
+  - url: https://llm.scads.ai/status/
+    status: 200
+  - url: https://llm.scads.ai/openapi.json
+    status: 200
+  - url: https://llm.scads.ai/v1/openapi.json
+    status: 404
+  - url: https://chat.llm.scads.ai/
+    status: 200
+  - url: https://selfservice.tu-dresden.de/services/scads-llm-api/
+    status: 200
+  - url: https://opara.zih.tu-dresden.de/server/api
+    status: 200
+  - url: https://opara.zih.tu-dresden.de/server/api/core/collections
+    status: 200
+  - url: https://opara.zih.tu-dresden.de/server/api/discover/search/objects
+    status: 200
+  - url: https://opara.zih.tu-dresden.de/server/oai/request?verb=Identify
+    status: 200
+  - url: https://opara.zih.tu-dresden.de/server/oai/request?verb=ListMetadataFormats
+    status: 200
+  - url: https://opara.zih.tu-dresden.de/server/oai/request?verb=ListSets
+    status: 200
+  - url: https://opara.zih.tu-dresden.de/server/oai/request?verb=ListRecords&metadataPrefix=oai_dc
+    status: 200
+  - url: https://idp.tu-dresden.de/idp/shibboleth
+    status: 200
+  - url: https://idp.tu-dresden.de/.well-known/openid-configuration
+    status: 200
+  - url: https://idp.tu-dresden.de/idp/profile/oidc/keyset
+    status: 200
+  - url: https://met.refeds.org/met/entity/https%3A%2F%2Fidp.tu-dresden.de%2Fidp%2Fshibboleth/
+    status: 200
+  - url: https://vvz.phil.tu-dresden.de/api
+    status: 200
+  - url: https://vvz.phil.tu-dresden.de/api?auth_code=test
+    status: 200
+  - url: https://fis.tu-dresden.de/portal/
+    status: 200
+  - url: https://fis.tu-dresden.de/ws/api
+    status: 403
+  - url: https://fis.tu-dresden.de/ws/oai?verb=Identify
+    status: 403
+  - url: https://fis.tu-dresden.de/portal/ws/api
+    status: 404
+  - url: https://tud.qucosa.de/oai/?verb=Identify
+    status: 200
+  - url: https://api.datacite.org/providers/kiyb
+    status: 200
+  - url: https://api.datacite.org/clients/tib.zih
+    status: 200
+  - url: https://api.datacite.org/dois/10.25532/OPARA-101
+    status: 200
+  - url: https://api.crossref.org/members?query=dresden
+    status: 200
+  - url: https://tu-dresden.de/.well-known/security.txt
+    status: 200
+  - url: https://tu-dresden.de/llms.txt
+    status: 404
+  - url: https://bildungsportal.sachsen.de/opal/restapi/repo/entries
+    status: 403
+  - url: https://data.tu-dresden.de/
+    status: 0
+  - url: https://api.tu-dresden.de/
+    status: 0
+  - url: https://opendata.tu-dresden.de/
+    status: 0
+  - url: https://developer.tu-dresden.de/
+    status: 0
+  - url: https://gitlab.tu-dresden.de/
+    status: 0
+  removed: 5
+  removed_note: >-
+    Five OpenAPI contracts and five apis[] entries, all of them the SLUB Dresden Linked Open Data
+    API at data.slub-dresden.de, plus the pristine _original source and the twenty-two artifacts
+    derived from it — JSON Schema, JSON Structure, JSON-LD context, vocabulary, two Spectral
+    rulesets, two examples, ten collection files and the agentic-access classification. Every one
+    was removed by name with git rm; no directory was removed wholesale.
 apis:
-- aid: tu-dresden:lecture-catalog
-  name: TU Dresden Lecture Catalog API
+- aid: tu-dresden:tud-ai-llm
+  name: TUD:AI LLM API
+  x-operator: institution
+  x-operator-evidence: >-
+    The host is not on tu-dresden.de, so this needed settling on evidence rather than hostname.
+    llm.scads.ai resolves to 141.76.18.84 and 141.76.19.193, inside the RIPE allocation
+    141.76.0.0/16, netname TUDINF-LAN, org-name "Technische Universitaet Dresden" — TU Dresden's
+    own address space, not a cloud tenancy. The service's own documentation states it is operated
+    by ScaDS.AI Dresden/Leipzig and ZIH, the Center for Information Services and High Performance
+    Computing at TU Dresden, and is "available to anyone affiliated with TU Dresden or ScaDS.AI
+    Dresden/Leipzig". Keys are issued from the university's own Self-Service Portal at
+    selfservice.tu-dresden.de, support runs to llm.scads.ai@tu-dresden.de, and the community
+    channel is a Matrix room on tu-dresden.de. This is TU Dresden's engineering on TU Dresden's
+    infrastructure. The CONTRACT, however, is not: https://llm.scads.ai/openapi.json is LiteLLM's
+    generic proxy specification, info.title "LiteLLM API", identical to every other LiteLLM
+    deployment. It is deliberately not saved to this repository — the deployment is TU Dresden's,
+    the document is the product's.
   description: >-
-    Gated JSON API providing automated access to public data from the TU Dresden lecture directory (Vorlesungsverzeichnis):
-    courses, seminars, instructors, buildings, semesters, institutes and degree programs. Access requires
-    requesting an API account; an auth_code query parameter is appended to requests. At least 10 seconds
-    must elapse between calls.
+    An OpenAI-compatible LLM inference API operated by ZIH and ScaDS.AI Dresden/Leipzig for TU
+    Dresden staff, students and ScaDS.AI affiliates, served from a LiteLLM proxy on the
+    university's own network. Per TU Dresden's documentation it fronts chat, audio generation and
+    transcription, image generation, embedding and reranking models, addressed through model
+    aliases for code, high-availability, image-generation, reasoning and vision. The published
+    context-length table names nine chat models: deepseek-ai/DeepSeek-V4-Flash and
+    zai-org/GLM-5.3-Flash at 1,048,576 tokens, MiniMaxAI/MiniMax-M3, MiniMaxAI/MiniMax-M3-MXFP8
+    and zai-org/GLM-5.2-FP8 at 524,288, google/gemma-4-26B-A4B-it and Qwen/Qwen3.8-27B at 262,144,
+    openai/gpt-oss-120b at 131,072 and meta-llama/Llama-3.3-70B-Instruct at 65,536. Keys minted
+    through the Self-Service Portal carry a restrictive requests-per-minute default, raised on
+    request. Verified live from outside the institution: GET /v1/models returns a LiteLLM
+    auth_error envelope under HTTP 500 with no credential, and a materially different envelope
+    naming a key hash when an invalid bearer token is presented, so the token is checked against a
+    store. There is also a browser front end at chat.llm.scads.ai behind TUD account login. No
+    OpenAPI is saved for this surface: the only contract served is LiteLLM's own, and crediting TU
+    Dresden with it would repeat exactly the error this re-profile removed. This is the most
+    consequential find of the pass — a German technical university running its own agent-facing
+    inference API on its own hardware.
+  humanURL: https://llm.scads.ai/docs/
+  baseURL: https://llm.scads.ai/v1
+  tags:
+  - Artificial Intelligence
+  - LLM
+  - Inference
+  - Research Computing
+  - OpenAI-Compatible
+  properties:
+  - type: Documentation
+    url: https://llm.scads.ai/docs/
+  - type: APIReference
+    url: https://llm.scads.ai/docs/usage/api/
+  - type: Website
+    url: https://chat.llm.scads.ai/
+  - type: Status
+    url: https://llm.scads.ai/status/
+  - type: TermsOfService
+    url: https://llm.scads.ai/docs/legal/usage-policy/
+  - type: PrivacyPolicy
+    url: https://llm.scads.ai/docs/legal/privacy-policy/api/
+  - type: Authentication
+    url: authentication/tu-dresden-authentication.yml
+  - type: Errors
+    url: errors/tu-dresden-problem-types.yml
+- aid: tu-dresden:opara-rest
+  name: OPARA Research Data Repository REST API
+  x-operator: institution
+  x-operator-evidence: >-
+    opara.zih.tu-dresden.de is under TU Dresden's own registrable domain, on the ZIH subdomain.
+    The DSpace HAL root at /server/api self-reports dspaceName "OPARA Research Data Repository"
+    and dspaceServer https://opara.zih.tu-dresden.de/server; the OAI-PMH Identify names adminEmail
+    servicedesk@tu-dresden.de; and DataCite registers the repository client tib.zih under the name
+    "OPARA" with url https://opara.zih.tu-dresden.de/, owned by provider KIYB, "Zentrum für
+    Informationsdienste und Hochleistungsrechnen - Technische Universität Dresden", rorId
+    https://ror.org/042aqky30. DSpace is open-source software TU Dresden self-hosts, not a vendor
+    SaaS tenancy — there is no vendor CNAME and no shared platform host. TU Dresden is the
+    operator here for other institutions too: the repository's OAI sets carry TU Bergakademie
+    Freiberg, HTW Dresden and Hochschule Mittweida alongside its own.
+  description: >-
+    The DSpace 7.6.2 REST API of OPARA, the open-access research-data repository ZIH operates for
+    TU Dresden and three further Saxon institutions. The HAL root at /server/api is served
+    anonymously and links roughly sixty resource families — communities, collections, items,
+    bundles, bitstreams and bitstream formats under /core; a faceted discovery service under
+    /discover with search/objects and browses; authentication and authorization under /authn and
+    /authz; eperson and group administration; workflow and submission endpoints; external-source
+    integration; and a Spring Boot actuator. Read access to public material needs no credential:
+    /server/api/core/collections and /server/api/discover/search/objects both return live JSON
+    unauthenticated. Deposits carry DataCite DOIs under TU Dresden's own prefix 10.25532, minted
+    by client tib.zih, with the publisher field reading "Technische Universität Dresden". TU
+    Dresden publishes no OpenAPI for it and none has been authored here; the contract shape is
+    DSpace's upstream REST contract, which belongs in the DSpace project's own record.
+  humanURL: https://opara.zih.tu-dresden.de/
+  baseURL: https://opara.zih.tu-dresden.de/server/api
+  tags:
+  - Research Data
+  - Repository
+  - Open Access
+  - DSpace
+  - Archive
+  properties:
+  - type: Website
+    url: https://opara.zih.tu-dresden.de/
+  - type: Documentation
+    url: https://tu-dresden.de/zih/forschung/projekte/opara
+  - type: Authentication
+    url: authentication/tu-dresden-authentication.yml
+  - type: Errors
+    url: errors/tu-dresden-problem-types.yml
+  - type: Conformance
+    url: conformance/tu-dresden-education-standards.yml
+- aid: tu-dresden:opara-oai
+  name: OPARA OAI-PMH Harvesting Interface
+  x-operator: institution
+  x-operator-evidence: >-
+    Same host and same operator as the REST API, and the protocol response says so itself: the
+    Identify envelope returns repositoryName "OPARA Research Data Repository", baseURL
+    https://opara.zih.tu-dresden.de/server/oai/request and adminEmail servicedesk@tu-dresden.de.
+    No vendor host, no vendor contact, no shared platform.
+  description: >-
+    The standards-based harvesting interface for OPARA — how TU Dresden's research data reaches
+    OpenAIRE, BASE, re3data and the rest of the aggregator layer. Identify returns protocolVersion
+    2.0, earliestDatestamp 2018-04-05T11:49:14Z, deletedRecord transient and granularity to the
+    second. ListMetadataFormats returns twelve prefixes — oai_dc, qdc, mods, didl, ore, mets, rdf,
+    marc, xoai, dim, etdms and uketd_dc — which is a configured repository rather than a stock
+    install. ListSets exposes named communities for four institutions: Technische Universität
+    Dresden, Technische Universität Bergakademie Freiberg, Hochschule für Technik und Wirtschaft
+    Dresden and Hochschule Mittweida, each split into Data Submissions and Research Data Archives.
+    A ListRecords call with metadataPrefix=oai_dc returned 263,680 bytes of live Dublin Core.
+    Protocol errors are returned inside a 200 envelope, as OAI-PMH requires — verb=Bogus yields
+    <error code="badVerb">Illegal verb</error>. The repository is registered in re3data as
+    r3d100012966.
+  humanURL: https://opara.zih.tu-dresden.de/
+  baseURL: https://opara.zih.tu-dresden.de/server/oai/request
+  tags:
+  - OAI-PMH
+  - Metadata
+  - Harvesting
+  - Open Access
+  - Research Data
+  properties:
+  - type: Documentation
+    url: https://opara.zih.tu-dresden.de/server/oai/request?verb=Identify
+  - type: Conformance
+    url: conformance/tu-dresden-education-standards.yml
+  - type: Errors
+    url: errors/tu-dresden-problem-types.yml
+- aid: tu-dresden:sso-shibboleth
+  name: TU Dresden Identity Provider (Shibboleth SAML 2.0 + OpenID Connect)
+  x-operator: institution
+  x-operator-evidence: >-
+    Every endpoint in the published metadata is on idp.tu-dresden.de — the four SAML SSO bindings,
+    the OIDC authorization, token and userinfo endpoints, and the JWKS. The entity is registered
+    by DFN-AAI (registrationAuthority https://www.aai.dfn.de, registrationInstant 2021-04-21),
+    declares shibmd:Scope tu-dresden.de, and carries mdui display names and an OrganizationURL of
+    http://www.tu-dresden.de with contacts informationssicherheit@tu-dresden.de and
+    servicedesk@tu-dresden.de. Unlike the hosted federation proxies common in this cohort, TU
+    Dresden runs the software.
+  description: >-
+    The university's own Shibboleth identity provider, operated by ZIH, and the surface class this
+    pipeline exists to surface: institution-operated by definition, fully machine-readable, and
+    almost never catalogued. The SAML 2.0 metadata document at /idp/shibboleth carries an
+    IDPSSODescriptor with four SingleSignOnService bindings — HTTP-POST, HTTP-POST-SimpleSign,
+    HTTP-Redirect and SOAP ECP on port 8443 — plus four signing and encryption KeyDescriptors.
+    REFEDS MET confirms the entity is exported from DFN-AAI into eduGAIN and republished by the
+    InCommon, SWAMID and UK Access Management federations, and that it holds both the REFEDS
+    Research and Scholarship entity category and SIRTFI. The same IdP now also speaks OpenID
+    Connect, correcting the June 2026 profile which recorded OIDC as planned but unavailable:
+    /.well-known/openid-configuration returns issuer https://idp.tu-dresden.de,
+    response_types [code], grant_types [authorization_code], scopes [openid], four token-endpoint
+    auth methods including private_key_jwt, and claims_supported carrying the eduPerson set —
+    eduPersonPrincipalName, eduPersonScopedAffiliation, eduPersonAssurance and
+    eduPersonEntitlement. /idp/profile/oidc/keyset serves a three-key JWKS.
+  humanURL: https://idp.tu-dresden.de/docu/
+  baseURL: https://idp.tu-dresden.de/idp/shibboleth
+  tags:
+  - Identity Federation
+  - Authentication
+  - SSO
+  - SAML
+  - Shibboleth
+  - OpenID Connect
+  - eduGAIN
+  properties:
+  - type: Documentation
+    url: https://idp.tu-dresden.de/docu/
+  - type: Authentication
+    url: authentication/tu-dresden-authentication.yml
+  - type: OpenIDConnectDiscovery
+    url: https://idp.tu-dresden.de/.well-known/openid-configuration
+  - type: PrivacyPolicy
+    url: https://idp.tu-dresden.de/dataprivacy
+  - type: Conformance
+    url: conformance/tu-dresden-education-standards.yml
+- aid: tu-dresden:lecture-catalog
+  name: TU Dresden Lecture Catalog API (Vorlesungsverzeichnis)
+  x-operator: institution
+  x-operator-evidence: >-
+    vvz.phil.tu-dresden.de is under the university's own registrable domain and is run by the
+    Faculty of Arts, Humanities and Social Sciences. The documentation page is authored in German
+    by the faculty, accounts are issued through the faculty's own contact page, and no vendor
+    software, contract or host is involved. Note that the five removed SLUB contracts wrongly
+    carried this host as their baseURL; it belongs only to this surface.
+  description: >-
+    A gated JSON API over the public data of the TU Dresden lecture directory — courses, seminars,
+    instructors, buildings, semesters, institutes and degree programmes. Access requires an API
+    account requested through the faculty contact page, after which an auth_code query parameter
+    is appended to every call; the documentation asks for at least ten seconds between requests.
+    The documented parameters are notitle, type, gebaeude, first_name plus last_name, datetype
+    (including a discordian calendar option), pruefungen with studiengang, semester (accepting
+    "current"), and institut, along with gebaeude_liste, dozenten_liste and institute_liste
+    enumerations. Responses are JSON with the first element carrying column headings. Verified
+    live and validating: a request with auth_code=test returns HTTP 200 and the plain-text German
+    string "Der Auth-Code ist leider nicht richtig." No OpenAPI exists for it and none has been
+    authored here — writing one from a prose parameter table would credit TU Dresden with a
+    contract it has not published. The faculty scope is a real limit: this is one faculty's
+    timetable, not a university-wide registrar API.
   humanURL: https://vvz.phil.tu-dresden.de/api
   baseURL: https://vvz.phil.tu-dresden.de/api
   tags:
-  - Courses
-  - Catalog
+  - Course Catalog
   - Timetable
   - Education
   - JSON
   properties:
   - type: Documentation
     url: https://vvz.phil.tu-dresden.de/api
-- aid: tu-dresden:sso-shibboleth
-  name: TU Dresden Shibboleth Single Sign-On (SAML IdP)
-  description: >-
-    SAML 2.0 Shibboleth Identity Provider operated by the ZIH for authentication and authorization of
-    TU Dresden services, and usable by external services for federated login (DFN-AAI). OIDC support is
-    planned but not yet available. Metadata is published at the shibboleth endpoint.
-  humanURL: https://idp.tu-dresden.de/docu/
-  baseURL: https://idp.tu-dresden.de/idp/shibboleth
-  tags:
-  - Authentication
-  - SSO
-  - SAML
-  - Shibboleth
-  - Identity
-  properties:
-  - type: Documentation
-    url: https://idp.tu-dresden.de/docu/
+  - type: Website
+    url: https://vvz.phil.tu-dresden.de/
   - type: Authentication
-    url: https://idp.tu-dresden.de/idp/shibboleth
-- aid: tu-dresden:qucosa-oai
-  name: Qucosa OAI-PMH (TU Dresden Document Server)
+    url: authentication/tu-dresden-authentication.yml
+  - type: Errors
+    url: errors/tu-dresden-problem-types.yml
+- aid: tu-dresden:fis-pure
+  name: TU Dresden Research Portal (Elsevier Pure) Web Service
+  x-operator: tenant
+  x-operator-evidence: >-
+    fis.tu-dresden.de is TU Dresden's hostname, but the software is Elsevier Pure: the portal HTML
+    served at /portal/ carries a PureFacade marker, the section structure (Research output,
+    Projects, Units, Datasets, Activities, Journals, Prizes, Courses, Facilities/Equipment,
+    Press/Media) is Pure's, and the Pure web-service path /ws/api answers 403 from Apache while
+    the non-Pure path /portal/ws/api answers 404 — the endpoint exists and is blocked, rather than
+    being absent. The publication records, the researcher profiles and the institutional data are
+    TU Dresden's; the contract, the schema and the OAI implementation are Elsevier's, and belong
+    against Elsevier's own record, not this one.
   description: >-
-    OAI-PMH 2.0 metadata harvesting interface for Qucosa, the document and publication server used by
-    TU Dresden (tud.qucosa.de) for theses, dissertations and open-access publications. Supports standard
-    OAI verbs such as Identify, ListRecords and GetRecord.
+    TU Dresden's research information system, a current-research-information-system tenancy on
+    Elsevier Pure, published to the world as the TUD Research Portal at fis.tu-dresden.de. The
+    public portal is fully browsable and answers 200. The programmable side is not reachable from
+    the public internet: /ws/api, /ws/rest and /ws/oai?verb=Identify all return an Apache 403 —
+    an edge denial ahead of any application authentication — so neither the Pure web service nor
+    its OAI-PMH interface can be harvested from outside, and no metadata profile, set list or
+    error envelope can be observed. Recorded as a real institutional surface with an honest
+    ceiling: TU Dresden operates a CRIS, and none of it is machine-readable to the public.
+  humanURL: https://fis.tu-dresden.de/portal/
+  baseURL: https://fis.tu-dresden.de/ws/api
+  tags:
+  - Research Information System
+  - CRIS
+  - Elsevier Pure
+  - Publications
+  properties:
+  - type: Website
+    url: https://fis.tu-dresden.de/portal/
+  - type: Authentication
+    url: authentication/tu-dresden-authentication.yml
+  - type: Errors
+    url: errors/tu-dresden-problem-types.yml
+- aid: tu-dresden:qucosa-oai
+  name: Qucosa TU Dresden OAI-PMH (Institutional Document Server)
+  x-operator: tenant
+  x-operator-evidence: >-
+    tud.qucosa.de is a TU-Dresden-specific view on Qucosa, the Saxon document server operated by
+    SLUB Dresden. The protocol response gives the operator away: the Identify envelope's request
+    element names the backend http://sdvcmr-prod-oai01.slub-dresden.de:8080/oai/, repositoryName
+    is "Qucosa" rather than anything TU Dresden, baseURL is http://www.qucosa.de/oai, adminEmail
+    is qucosa-it@slub-dresden.de and repositoryIdentifier is qucosa.de. DataCite registers the
+    matching client as tbyu.ozzulw, "Qucosa TU Dresden: Institutionelles Repositorium der
+    Technischen Universität Dresden", under provider TBYU — Sächsische Landesbibliothek – Staats-
+    und Universitätsbibliothek Dresden. The theses and open-access publications are TU Dresden's;
+    the server, the software and the OAI implementation are SLUB's.
+  description: >-
+    The OAI-PMH 2.0 harvesting interface for the TU Dresden instance of Qucosa, the Saxon document
+    and publication server used for dissertations, theses and open-access publications. Identify
+    returns protocolVersion 2.0, earliestDatestamp 2010-06-09, deletedRecord persistent, deflate
+    compression and an eprints description block. A real institutional fact and one of the few
+    programmable surfaces the university has in this class — recorded as a tenancy rather than
+    deleted, because the relationship is genuine even though the engineering is not TU Dresden's.
   humanURL: https://tud.qucosa.de/
   baseURL: https://tud.qucosa.de/oai/
   tags:
-  - Repository
   - OAI-PMH
+  - Repository
   - Open Access
-  - Metadata
   - Publications
+  - Theses
   properties:
   - type: Documentation
     url: https://tud.qucosa.de/oai/?verb=Identify
-- aid: tu-dresden:opara
-  name: OpARA Research Data Repository
-  description: >-
-    OpARA (Open Access Repository and Archive) is the research-data repository for researchers of TU Dresden
-    and TU Bergakademie Freiberg, operated by the ZIH. It supports long-term archiving and open-access
-    publication of research data and is registered as a data provider in OpenAIRE/OpenDOAR.
-  humanURL: https://opara.zih.tu-dresden.de/
-  baseURL: https://opara.zih.tu-dresden.de/
-  tags:
-  - Research Data
-  - Repository
-  - Open Access
-  - Archive
-  properties:
-  - type: Documentation
-    url: https://tu-dresden.de/zih/forschung/projekte/opara
-- aid: tu-dresden:tu-dresden-authority-search-api
-  name: TU Dresden authority_search API
-  description: Authority Provider Identifier Search
-  humanURL: https://vvz.phil.tu-dresden.de/api
-  baseURL: https://vvz.phil.tu-dresden.de/api
-  tags: []
-  tags_raw:
-  - authority_search
-  properties:
-  - type: OpenAPI
-    url: openapi/tu-dresden-authority-search-api-openapi.yml
-  - type: Documentation
-    url: https://data.slub-dresden.de/doc/swagger_api
-  - type: GitHub
-    url: https://github.com/slub/data.slub-dresden.de
-  - type: JSONSchema
-    url: json-schema/tu-dresden-entity-schema.json
-  - type: JSONStructure
-    url: json-structure/tu-dresden-entity-structure.json
-  - type: x-json-ld
-    url: json-ld/tu-dresden-context.jsonld
-  - type: x-vocabulary
-    url: vocabulary/tu-dresden-vocabulary.yml
-  - type: x-spectral-rules
-    url: rules/tu-dresden-rules.yml
-  - type: x-example
-    url: examples/tu-dresden-search-example.json
-  - type: x-example
-    url: examples/tu-dresden-entity-example.json
-- aid: tu-dresden:tu-dresden-explorative-search-api
-  name: TU Dresden explorative search API
-  description: API endpoint to be use with the explorative search webapp
-  humanURL: https://vvz.phil.tu-dresden.de/api
-  baseURL: https://vvz.phil.tu-dresden.de/api
-  tags:
-  - explorative search
-  properties:
-  - type: OpenAPI
-    url: openapi/tu-dresden-explorative-search-api-openapi.yml
-  - type: Documentation
-    url: https://data.slub-dresden.de/doc/swagger_api
-  - type: GitHub
-    url: https://github.com/slub/data.slub-dresden.de
-  - type: JSONSchema
-    url: json-schema/tu-dresden-entity-schema.json
-  - type: JSONStructure
-    url: json-structure/tu-dresden-entity-structure.json
-  - type: x-json-ld
-    url: json-ld/tu-dresden-context.jsonld
-  - type: x-vocabulary
-    url: vocabulary/tu-dresden-vocabulary.yml
-  - type: x-spectral-rules
-    url: rules/tu-dresden-rules.yml
-  - type: x-example
-    url: examples/tu-dresden-search-example.json
-  - type: x-example
-    url: examples/tu-dresden-entity-example.json
-- aid: tu-dresden:tu-dresden-reconcile-api
-  name: TU Dresden reconcile API
-  description: Openrefine Reconcilation and Data Extension Operations
-  humanURL: https://vvz.phil.tu-dresden.de/api
-  baseURL: https://vvz.phil.tu-dresden.de/api
-  tags:
-  - reconcile
-  properties:
-  - type: OpenAPI
-    url: openapi/tu-dresden-reconcile-api-openapi.yml
-  - type: Documentation
-    url: https://data.slub-dresden.de/doc/swagger_api
-  - type: GitHub
-    url: https://github.com/slub/data.slub-dresden.de
-  - type: JSONSchema
-    url: json-schema/tu-dresden-entity-schema.json
-  - type: JSONStructure
-    url: json-structure/tu-dresden-entity-structure.json
-  - type: x-json-ld
-    url: json-ld/tu-dresden-context.jsonld
-  - type: x-vocabulary
-    url: vocabulary/tu-dresden-vocabulary.yml
-  - type: x-spectral-rules
-    url: rules/tu-dresden-rules.yml
-  - type: x-example
-    url: examples/tu-dresden-search-example.json
-  - type: x-example
-    url: examples/tu-dresden-entity-example.json
-- aid: tu-dresden:tu-dresden-search-and-access-api
-  name: TU Dresden search and access API
-  description: Search and Access Operations
-  humanURL: https://vvz.phil.tu-dresden.de/api
-  baseURL: https://vvz.phil.tu-dresden.de/api
-  tags:
-  - search and access
-  properties:
-  - type: OpenAPI
-    url: openapi/tu-dresden-search-and-access-api-openapi.yml
-  - type: Documentation
-    url: https://data.slub-dresden.de/doc/swagger_api
-  - type: GitHub
-    url: https://github.com/slub/data.slub-dresden.de
-  - type: JSONSchema
-    url: json-schema/tu-dresden-entity-schema.json
-  - type: JSONStructure
-    url: json-structure/tu-dresden-entity-structure.json
-  - type: x-json-ld
-    url: json-ld/tu-dresden-context.jsonld
-  - type: x-vocabulary
-    url: vocabulary/tu-dresden-vocabulary.yml
-  - type: x-spectral-rules
-    url: rules/tu-dresden-rules.yml
-  - type: x-example
-    url: examples/tu-dresden-search-example.json
-  - type: x-example
-    url: examples/tu-dresden-entity-example.json
-- aid: tu-dresden:tu-dresden-source-api
-  name: TU Dresden source API
-  description: Source data access operation
-  humanURL: https://vvz.phil.tu-dresden.de/api
-  baseURL: https://vvz.phil.tu-dresden.de/api
-  tags:
-  - Source
-  tags_raw:
-  - source
-  properties:
-  - type: OpenAPI
-    url: openapi/tu-dresden-source-api-openapi.yml
-  - type: Documentation
-    url: https://data.slub-dresden.de/doc/swagger_api
-  - type: GitHub
-    url: https://github.com/slub/data.slub-dresden.de
-  - type: JSONSchema
-    url: json-schema/tu-dresden-entity-schema.json
-  - type: JSONStructure
-    url: json-structure/tu-dresden-entity-structure.json
-  - type: x-json-ld
-    url: json-ld/tu-dresden-context.jsonld
-  - type: x-vocabulary
-    url: vocabulary/tu-dresden-vocabulary.yml
-  - type: x-spectral-rules
-    url: rules/tu-dresden-rules.yml
-  - type: x-example
-    url: examples/tu-dresden-search-example.json
-  - type: x-example
-    url: examples/tu-dresden-entity-example.json
-common:
-  - type: AgenticAccess
-    url: agentic-access/tu-dresden-agentic-access.yml
-  - type: VulnerabilityDisclosure
-    url: security/tu-dresden-vulnerability-disclosure.yml
-  - type: DomainSecurity
-    url: security/tu-dresden-domain-security.yml
   - type: Website
-    url: https://tu-dresden.de/
-  - type: GitHub
-    url: https://github.com/tu-dresden
-  - type: LinkedIn
-    url: https://de.linkedin.com/school/tu-dresden/
-  - type: Plans
-    url: plans/tu-dresden-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/tu-dresden-rate-limits.yml
-  - type: FinOps
-    url: finops/tu-dresden-finops.yml
-  - type: Review
-    url: review.yml
+    url: https://tud.qucosa.de/
+  - type: Conformance
+    url: conformance/tu-dresden-education-standards.yml
+common:
+- type: Website
+  url: https://tu-dresden.de/
+- type: Blog
+  url: https://tu-dresden.de/tu-dresden/newsportal
+- type: GitHubOrganization
+  url: https://github.com/tu-dresden
+- type: LinkedIn
+  url: https://de.linkedin.com/school/tu-dresden/
+- type: Documentation
+  url: https://llm.scads.ai/docs/
+- type: APIReference
+  url: https://llm.scads.ai/docs/usage/api/
+- type: Status
+  url: https://llm.scads.ai/status/
+- type: Support
+  url: https://tu-dresden.de/zih/dienste/service-desk
+- type: TermsOfService
+  url: https://tu-dresden.de/impressum
+- type: PrivacyPolicy
+  url: https://tu-dresden.de/datenschutz
+- type: IdentityFederation
+  url: https://met.refeds.org/met/entity/https%3A%2F%2Fidp.tu-dresden.de%2Fidp%2Fshibboleth/
+- type: ResearchRepository
+  url: https://opara.zih.tu-dresden.de/
+- type: LibraryCatalog
+  url: https://katalog.slub-dresden.de/
+- type: CourseCatalog
+  url: https://vvz.phil.tu-dresden.de/
+- type: ResearchComputing
+  url: https://tu-dresden.de/zih/hochleistungsrechnen
+- type: AIPolicy
+  url: https://tu-dresden.de/tu-dresden/digitalisierung/ki-an-der-tu-dresden
+- type: AITooling
+  url: https://llm.scads.ai/docs/
+- type: Authentication
+  url: authentication/tu-dresden-authentication.yml
+- type: Errors
+  url: errors/tu-dresden-problem-types.yml
+- type: Conformance
+  url: conformance/tu-dresden-education-standards.yml
+- type: VulnerabilityDisclosure
+  url: security/tu-dresden-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/tu-dresden-domain-security.yml
+- type: Plans
+  url: plans/tu-dresden-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/tu-dresden-rate-limits.yml
+- type: FinOps
+  url: finops/tu-dresden-finops.yml
+- type: Review
+  url: review.yml
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
