@@ -1,17 +1,17 @@
 ---
 kin_checks:
   slug: tu-dresden
-  schema_version: 0.16.0
-  scored_at: '2026-08-29'
-  run_ts: 2026-08-29T230545
+  schema_version: 0.17.2
+  scored_at: '2026-09-01'
+  run_ts: 2026-09-01T063623
   note: Actionable checks only (missed + partial). earned/na are every other check
-    in rubric/scoring-0.16.0.yml; counts below let you verify that.
+    in rubric/scoring-0.17.2.yml; counts below let you verify that.
   counts:
     total: 130
-    earned: 34
-    partial: 7
-    missed: 66
-    na: 23
+    earned: 28
+    partial: 3
+    missed: 58
+    na: 41
   checks:
   - id: well_known_published
     status: missed
@@ -19,32 +19,19 @@ kin_checks:
     status: missed
   - id: apis_json_self_hosted
     status: missed
-  - id: openapi_3_2
+  - id: contract_present
     status: missed
-    detail: 0 of 5 openapi documents pass
-  - id: openapi_3_1
-    status: missed
-    detail: 0 of 5 openapi documents pass
-  - id: info_complete
-    status: missed
-    detail: 0 of 5 openapi documents pass
   - id: examples_present
     status: missed
-  - id: components_reuse
-    status: missed
-    detail: 0 of 5 openapi documents pass
-  - id: security_schemes_defined
-    status: missed
-    detail: 0 of 5 openapi documents pass
-  - id: security_applied
-    status: missed
-    detail: 0 of 5 openapi documents pass
-  - id: webhooks_or_callbacks
-    status: missed
-    detail: 0 of 5 openapi documents pass
   - id: asyncapi_present
     status: missed
+  - id: json_schema_present
+    status: missed
   - id: json_schema_per_resource
+    status: missed
+  - id: json_ld_present
+    status: missed
+  - id: json_ld_class_depth
     status: missed
   - id: json_ld_property_depth
     status: missed
@@ -52,19 +39,19 @@ kin_checks:
     status: missed
   - id: domain_standard_conformance
     status: missed
+  - id: rules_present
+    status: missed
   - id: rules_substantial
     status: missed
-  - id: vocabulary_published
+  - id: balanced_severities
     status: missed
-  - id: conformance_declared
+  - id: vocabulary_published
     status: missed
   - id: overlay_published
     status: missed
   - id: change_log_present
     status: missed
   - id: status_page_present
-    status: missed
-  - id: rate_limits_rich
     status: missed
   - id: deprecation_policy
     status: missed
@@ -77,8 +64,6 @@ kin_checks:
   - id: examples_published
     status: missed
   - id: portal_present
-    status: missed
-  - id: api_reference_present
     status: missed
   - id: getting_started_present
     status: missed
@@ -94,19 +79,11 @@ kin_checks:
     status: missed
   - id: agent_skill_present
     status: missed
-  - id: support_channel
-    status: missed
-  - id: blog_present
-    status: missed
   - id: plans_multiple
     status: missed
   - id: pricing_link
     status: missed
   - id: sign_up_present
-    status: missed
-  - id: terms_of_service
-    status: missed
-  - id: privacy_policy
     status: missed
   - id: compliance_published
     status: missed
@@ -114,13 +91,13 @@ kin_checks:
     status: missed
   - id: reg_oauth_scopes
     status: missed
-  - id: reg_terms_of_service
-    status: missed
-  - id: reg_privacy_policy
-    status: missed
   - id: reg_compliance_published
     status: missed
   - id: reg_named_standard_conformance
+    status: missed
+  - id: spec_presence
+    status: missed
+  - id: agentic_access
     status: missed
   - id: reversibility_documented
     status: missed
@@ -152,24 +129,10 @@ kin_checks:
     status: missed
   - id: agentic_commerce
     status: missed
-  - id: operations_summary_coverage
+  - id: github_org_present
     status: partial
-    earned: 4.8
-    detail: 4 of 5 openapi documents pass
-  - id: operations_description_coverage
-    status: partial
-    earned: 1.2
-    detail: 1 of 5 openapi documents pass
-  - id: rules_present
-    status: partial
-    earned: 2.5
-  - id: balanced_severities
-    status: partial
-    earned: 0.75
-  - id: agentic_access
-    status: partial
-    earned: 2.5
-    detail: 'authorship: derived'
+    earned: 1.0
+    detail: pointer liveness 0.5
   - id: auth_clarity
     status: partial
     earned: 3.5
