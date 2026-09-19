@@ -302,6 +302,12 @@ apis:
   - Repository
   - Open Access
   - DSpace
+  - Archives
+  tags_raw:
+  - Research Data
+  - Repository
+  - Open Access
+  - DSpace
   - Archive
   properties:
   - type: Website
@@ -460,6 +466,11 @@ apis:
   humanURL: https://fis.tu-dresden.de/portal/
   baseURL: https://fis.tu-dresden.de/ws/api
   tags:
+  - Research Information System
+  - CRI
+  - Elsevier Pure
+  - Publications
+  tags_raw:
   - Research Information System
   - CRIS
   - Elsevier Pure
