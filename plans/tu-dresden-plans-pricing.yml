@@ -4,7 +4,7 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: TU Dresden
 providerId: tu-dresden
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-08-30'
 reconciled: false
 tags:
 - Education
@@ -18,9 +18,13 @@ description: >-
   administrative and identity APIs are not openly self-service and require institutional
   affiliation, credentials, or federation membership rather than a paid plan.
 notes: >-
-  No published per-seat or per-call commercial pricing. "Free / Open" reflects open
-  public endpoints; "Affiliation / Credentialed" reflects access gated by institutional
-  identity rather than payment.
+  Reconfirmed 2026-08-30. No published per-seat or per-call commercial pricing anywhere in the
+  footprint. "Free / Open" reflects the genuinely open endpoints — the OPARA DSpace REST API and
+  both OAI-PMH interfaces, all of which answer anonymously. "Affiliation / Credentialed" reflects
+  access gated by institutional identity rather than payment, which covers TUD:AI (keys issued
+  from the university Self-Service Portal to TU Dresden and ScaDS.AI affiliates only, metered by
+  a requests-per-minute cap rather than by price), the gated lecture-catalog auth_code, and the
+  Pure web service. There is no paid tier and no public signup on any surface.
 sources:
 - https://raw.githubusercontent.com/api-evangelist/tu-dresden/refs/heads/main/apis.yml
 plans:

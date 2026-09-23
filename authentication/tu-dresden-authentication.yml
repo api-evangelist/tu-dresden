@@ -1,0 +1,124 @@
+generated: '2026-08-30'
+method: probed
+source:
+- https://llm.scads.ai/v1/models
+- https://llm.scads.ai/docs/usage/api/
+- https://selfservice.tu-dresden.de/services/scads-llm-api/
+- https://vvz.phil.tu-dresden.de/api
+- https://vvz.phil.tu-dresden.de/api?auth_code=test
+- https://opara.zih.tu-dresden.de/server/api
+- https://opara.zih.tu-dresden.de/server/api/authn
+- https://idp.tu-dresden.de/idp/shibboleth
+- https://idp.tu-dresden.de/.well-known/openid-configuration
+- https://fis.tu-dresden.de/ws/api
+description: >-
+  How the TU Dresden surfaces recorded in apis.yml are authenticated, established by probing each
+  one from outside the institution's network on 2026-08-30. Every scheme below was observed in a
+  live response or read from TU Dresden's own documentation — none is inferred from an OpenAPI,
+  because TU Dresden publishes no OpenAPI of its own. TU Dresden issues no self-service developer
+  credential to the general public: every credential here is bound to an institutional
+  affiliation, which is the normal shape for a university and is recorded rather than treated as
+  a gap.
+schemes:
+- id: tud-ai-bearer
+  surface: tu-dresden:tud-ai-llm
+  type: apiKey
+  scheme: bearer
+  in: header
+  header: Authorization
+  format: 'Bearer <TUD:AI API key>'
+  onboarding: affiliation
+  issuance: >-
+    TU Dresden employees generate a key themselves at
+    https://selfservice.tu-dresden.de/services/scads-llm-api/ (the institution's Self-Service
+    Portal, which itself requires a TU Dresden account). Students and ScaDS.AI-affiliated
+    externals request one by email to llm.scads.ai@tu-dresden.de. There is no public signup.
+  evidence: >-
+    GET https://llm.scads.ai/v1/models with no credential returns HTTP 500 with
+    {"error":{"message":"No api key passed in.","type":"auth_error","param":"None","code":"500"}}.
+    The same request bearing Authorization: Bearer sk-not-a-real-key returns a DIFFERENT body —
+    "Authentication Error, Invalid proxy server token passed. Received API Key = sk-...-key, Key
+    Hash (Token) =d748053a…, Unable to find token in cache or `LiteLLM_VerificationTokenTable`" —
+    which proves the token is validated against a store rather than merely required. The
+    documented base URL is https://llm.scads.ai/v1 and the service is OpenAI-compatible, so any
+    official OpenAI client authenticates by pointing at that base URL.
+  quotas: >-
+    TU Dresden's documentation states that keys created through the Self-Service Portal carry a
+    restrictive requests-per-minute limit by default, with higher limits available on request.
+    The numeric limit is not published.
+- id: vvz-auth-code
+  surface: tu-dresden:lecture-catalog
+  type: apiKey
+  in: query
+  parameter: auth_code
+  onboarding: request
+  issuance: >-
+    An API account is issued on request through the lecture directory's contact page; the
+    documentation states that anyone interested can ask for one. The account yields an auth_code
+    appended to every request.
+  evidence: >-
+    GET https://vvz.phil.tu-dresden.de/api?auth_code=test returns HTTP 200 with the plain-text
+    body "Der Auth-Code ist leider nicht richtig." — the code is checked, and a wrong one is
+    rejected in German with a 200 status rather than a 401. GET
+    https://vvz.phil.tu-dresden.de/api with no parameter returns the human documentation page.
+  quotas: >-
+    The documentation requires at least ten seconds between calls. No numeric quota is published
+    and no 429 was observed.
+- id: opara-open-read
+  surface: tu-dresden:opara-rest
+  type: none
+  onboarding: none
+  issuance: >-
+    Read access to public communities, collections, items and bitstreams needs no credential.
+    Deposit, workflow and administrative operations authenticate through the DSpace 7
+    authentication endpoint at https://opara.zih.tu-dresden.de/server/api/authn, which for TU
+    Dresden members is backed by the institution's Shibboleth identity provider.
+  evidence: >-
+    GET https://opara.zih.tu-dresden.de/server/api returns HTTP 200 anonymously with the DSpace
+    HAL root document (dspaceName "OPARA Research Data Repository", dspaceVersion "DSpace 7.6.2")
+    listing an authn link. GET /server/api/core/collections and
+    /server/api/discover/search/objects both return 200 with live data and no credential.
+- id: idp-saml-oidc
+  surface: tu-dresden:sso-shibboleth
+  type: federated
+  protocols:
+  - SAML 2.0 Web Browser SSO
+  - SAML 2.0 ECP (SOAP, port 8443)
+  - OpenID Connect authorization_code
+  onboarding: federation
+  issuance: >-
+    Service providers do not receive a credential from TU Dresden directly; they join DFN-AAI (or
+    reach the entity through eduGAIN) and consume the published metadata. OIDC relying parties
+    authenticate at the token endpoint with client_secret_basic, client_secret_post,
+    client_secret_jwt or private_key_jwt.
+  evidence: >-
+    https://idp.tu-dresden.de/idp/shibboleth serves signed SAML 2.0 metadata registered by
+    https://www.aai.dfn.de. https://idp.tu-dresden.de/.well-known/openid-configuration returns
+    issuer https://idp.tu-dresden.de, response_types_supported [code], grant_types_supported
+    [authorization_code], scopes_supported [openid], and
+    token_endpoint_auth_methods_supported [client_secret_basic, client_secret_post,
+    client_secret_jwt, private_key_jwt]. https://idp.tu-dresden.de/idp/profile/oidc/keyset serves
+    a three-key JWKS.
+- id: pure-ws-key
+  surface: tu-dresden:fis-pure
+  type: apiKey
+  onboarding: unknown
+  operator: tenant
+  issuance: >-
+    Elsevier Pure's web service is normally keyed per client by the institution's Pure
+    administrators. TU Dresden publishes no request process, and the endpoint is not reachable
+    from the public internet.
+  evidence: >-
+    https://fis.tu-dresden.de/ws/api returns HTTP 403 from Apache with the server's generic
+    Forbidden page — an edge denial, not an application auth challenge. /ws/oai?verb=Identify and
+    /ws/rest return the same 403. /portal/ws/api returns 404. The public portal at
+    https://fis.tu-dresden.de/portal/ answers 200 and identifies itself as Pure via a PureFacade
+    marker in the page.
+notes: >-
+  No OAuth 2.0 authorization server, no client-credentials flow and no developer key management
+  console exists on any TU Dresden host outside the identity provider itself. The institution
+  publishes a security.txt at https://tu-dresden.de/.well-known/security.txt naming
+  cert@tu-dresden.de, which is recorded separately under security/.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

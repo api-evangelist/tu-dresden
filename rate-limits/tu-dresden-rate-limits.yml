@@ -4,7 +4,7 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: TU Dresden
 providerId: tu-dresden
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-08-30'
 reconciled: false
 tags:
 - Education
@@ -12,16 +12,36 @@ tags:
 - University
 - Rate Limiting
 description: >-
-  TU Dresden does not publish a unified public rate-limit table across its APIs. Open
-  metadata and harvesting endpoints (OAI-PMH, IIIF, library) may throttle large-scale
-  or automated harvesting; clients should harvest politely, honor Retry-After, and
-  contact the relevant service for bulk access.
-notes: Confirm per-service limits with each API's documentation; harvest responsibly.
+  TU Dresden publishes no unified rate-limit table across its APIs, but two of its surfaces do
+  state a limit in their own documentation and both were confirmed on 2026-08-30. Open metadata
+  and harvesting endpoints (OPARA and Qucosa OAI-PMH, the OPARA DSpace REST API) publish no
+  numeric limit and may throttle large-scale harvesting; clients should harvest politely, honor
+  Retry-After, and contact the service for bulk access.
+notes: >-
+  Confirmed per-service, 2026-08-30. No 429 was observed on any surface during probing; the two
+  documented limits below are the institution's own statements, not measurements.
 sources:
 - https://raw.githubusercontent.com/api-evangelist/tu-dresden/refs/heads/main/apis.yml
 responseCodes:
   throttled: 429
 limits:
+- name: TUD:AI Self-Service key
+  surface: tu-dresden:tud-ai-llm
+  scope: api-key
+  metric: requests-per-minute
+  limit: restrictive default, value not published
+  notes: >-
+    TU Dresden's documentation at https://llm.scads.ai/docs/usage/api/ states that keys created
+    through the Self-Service Portal "come with a restrictive request-per-minute limit by default"
+    and that higher limits are available on request. The number itself is not published.
+- name: Lecture Catalog minimum interval
+  surface: tu-dresden:lecture-catalog
+  scope: client
+  metric: seconds-between-requests
+  limit: 10
+  notes: >-
+    The lecture directory API documentation at https://vvz.phil.tu-dresden.de/api requires at
+    least ten seconds between calls. Enforcement was not tested.
 - name: Default
   scope: client
   metric: requests-per-minute

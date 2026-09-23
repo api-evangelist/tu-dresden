@@ -1,0 +1,178 @@
+generated: '2026-08-30'
+method: probed
+source:
+- https://opara.zih.tu-dresden.de/server/oai/request?verb=Identify
+- https://opara.zih.tu-dresden.de/server/oai/request?verb=ListMetadataFormats
+- https://opara.zih.tu-dresden.de/server/oai/request?verb=ListSets
+- https://opara.zih.tu-dresden.de/server/oai/request?verb=ListRecords&metadataPrefix=oai_dc
+- https://tud.qucosa.de/oai/?verb=Identify
+- https://idp.tu-dresden.de/idp/shibboleth
+- https://met.refeds.org/met/entity/https%3A%2F%2Fidp.tu-dresden.de%2Fidp%2Fshibboleth/
+- https://idp.tu-dresden.de/.well-known/openid-configuration
+- https://idp.tu-dresden.de/idp/profile/oidc/keyset
+- https://api.datacite.org/providers/kiyb
+- https://api.datacite.org/clients/tib.zih
+- https://api.datacite.org/prefixes/10.25532
+- https://api.datacite.org/dois/10.25532/OPARA-101
+- https://api.crossref.org/members?query=dresden
+- https://bildungsportal.sachsen.de/opal/.well-known/openid-configuration
+- https://bildungsportal.sachsen.de/opal/restapi/repo/entries
+docs: https://tu-dresden.de/zih/
+note: >-
+  Conformance against the Kin Score `education` regulatory regime standards[], probed live on
+  2026-08-30 during the university re-profile of TU Dresden. Every entry below is a
+  machine-observable response, not a prose claim on a web page. All four hits belong to TU
+  Dresden outright and run on its own infrastructure, which is unusual in this cohort: the OPARA
+  OAI-PMH interface, the Shibboleth identity provider (which satisfies both `shibboleth` and
+  `saml`), and the DataCite membership held by the Center for Information Services and High
+  Performance Computing (ZIH). No hit here is tenant-operated. Absences are recorded as `false`
+  deliberately: this rubric check is reward-only and an invented conformance is worse than a zero.
+  Nothing in this file is derived from the SLUB Dresden Linked Open Data API, whose contract was
+  removed from this repository in the same pass because SLUB is a separate Saxon state
+  institution.
+standards:
+- id: oai-pmh
+  name: OAI-PMH 2.0 (Open Archives Initiative Protocol for Metadata Harvesting)
+  conforms: true
+  operator: institution
+  evidence: >-
+    https://opara.zih.tu-dresden.de/server/oai/request?verb=Identify returns 200 with a valid
+    OAI-PMH 2.0 envelope: repositoryName "OPARA Research Data Repository", baseURL
+    https://opara.zih.tu-dresden.de/server/oai/request, protocolVersion 2.0, adminEmail
+    servicedesk@tu-dresden.de, earliestDatestamp 2018-04-05T11:49:14Z, deletedRecord transient,
+    granularity YYYY-MM-DDThh:mm:ssZ. ListMetadataFormats returns twelve prefixes — oai_dc, qdc,
+    mods, didl, ore, mets, rdf, marc, xoai, dim, etdms and uketd_dc — which is a configured
+    repository rather than a stock install. ListSets returns named sets for four Saxon
+    institutions: Technische Universität Dresden, Technische Universität Bergakademie Freiberg,
+    Hochschule für Technik und Wirtschaft Dresden and Hochschule Mittweida, each split into
+    Data Submissions and Research Data Archives communities. ListRecords with
+    metadataPrefix=oai_dc returned 263,680 bytes of live Dublin Core records. The adminEmail,
+    the host and the DataCite client registration all resolve to TU Dresden.
+  spec: https://www.openarchives.org/OAI/openarchivesprotocol.html
+- id: shibboleth
+  name: Shibboleth / DFN-AAI + eduGAIN identity federation
+  conforms: true
+  operator: institution
+  evidence: >-
+    https://idp.tu-dresden.de/idp/shibboleth returns 200 with 12,644 bytes of SAML metadata whose
+    EntityDescriptor entityID is https://idp.tu-dresden.de/idp/shibboleth, carrying
+    mdrpi:RegistrationInfo registrationAuthority https://www.aai.dfn.de and registrationInstant
+    2021-04-21T08:49:59Z, an mdattr:EntityAttributes block asserting
+    http://aai.dfn.de/loa/degree-of-relian(ce) = "advanced", mdui:UIInfo with German and English
+    display names "Technische Universität Dresden", four KeyDescriptors and an OrganizationURL of
+    http://www.tu-dresden.de. REFEDS MET confirms the entity is exported from DFN-AAI to eduGAIN
+    and is republished by the InCommon, SWAMID and UK Access Management federations, carries the
+    entity categories http://refeds.org/category/research-and-scholarship and
+    https://refeds.org/sirtfi, and declares shibmd:Scope tu-dresden.de. Every SSO endpoint is on
+    idp.tu-dresden.de — this is TU Dresden's own Shibboleth deployment, not a hosted federation
+    proxy.
+  spec: https://www.shibboleth.net/
+- id: saml
+  name: SAML 2.0 Web Browser SSO
+  conforms: true
+  operator: institution
+  evidence: >-
+    The same metadata document declares an IDPSSODescriptor with
+    protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol" and four
+    SingleSignOnService bindings, all on the institution's own host: HTTP-POST
+    (/idp/profile/SAML2/POST/SSO), HTTP-POST-SimpleSign
+    (/idp/profile/SAML2/POST-SimpleSign/SSO), HTTP-Redirect (/idp/profile/SAML2/Redirect/SSO) and
+    SOAP ECP on port 8443 (/idp/profile/SAML2/SOAP/ECP). Signing and encryption KeyDescriptors
+    are present, contacts are informationssicherheit@tu-dresden.de and
+    servicedesk@tu-dresden.de, and the privacy statement URL is
+    https://idp.tu-dresden.de/dataprivacy. Beyond SAML, the same IdP now also serves OpenID
+    Connect: https://idp.tu-dresden.de/.well-known/openid-configuration returns 200 with issuer
+    https://idp.tu-dresden.de, authorization/token/userinfo endpoints under /idp/profile/oidc/,
+    and claims_supported including eduPersonPrincipalName, eduPersonScopedAffiliation,
+    eduPersonAssurance and eduPersonEntitlement; https://idp.tu-dresden.de/idp/profile/oidc/keyset
+    returns a three-key JWKS (RSASign_20260113, ECSign_20260113, RSAEnc_20260113). The June 2026
+    profile recorded OIDC as "planned but not yet available"; that is no longer true.
+  spec: http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html
+- id: datacite
+  name: DataCite DOI registration
+  conforms: true
+  operator: institution
+  evidence: >-
+    https://api.datacite.org/providers/kiyb returns 200: symbol KIYB, name "Zentrum für
+    Informationsdienste und Hochleistungsrechnen - Technische Universität Dresden",
+    memberType consortium_organization, country DE, rorId https://ror.org/042aqky30 (TU Dresden).
+    https://api.datacite.org/clients/tib.zih returns the repository client named "OPARA" with url
+    https://opara.zih.tu-dresden.de/ registered in 2017.
+    https://api.datacite.org/prefixes/10.25532 shows the prefix is bound to client tib.zih under
+    provider kiyb, and https://api.datacite.org/dois/10.25532/OPARA-101 resolves to a real
+    deposit whose publisher field reads "Technische Universität Dresden". The membership, the
+    prefix, the minting client and the landing pages are all TU Dresden's.
+  spec: https://schema.datacite.org/
+- id: crossref
+  name: Crossref
+  conforms: false
+  evidence: >-
+    https://api.crossref.org/members?query=dresden returns 200 with total-results 2, and neither
+    is the university: member 37393 "Staatliche Kunstsammlungen Dresden" and member 26325
+    "Sachsische Landesbibliothek, Staats- und Universitatsbibliothek Dresden". TU Dresden holds no
+    Crossref membership in its own right.
+- id: orcid
+  name: ORCID
+  conforms: false
+  evidence: >-
+    No ORCID iD appears in any machine-readable TU Dresden surface that can be read from outside.
+    ListRecords with metadataPrefix=oai_dc against the OPARA OAI-PMH endpoint returned 263,680
+    bytes of Dublin Core with zero case-insensitive occurrences of the string "orcid" outside a
+    single free-text description field. The identity provider's OIDC discovery document lists
+    eduPerson claims but no ORCID claim. The Pure-based research information system at
+    fis.tu-dresden.de exposes no ORCID iD on its public person listing, and its web service and
+    OAI endpoints answer 403 to the public internet, so nothing is machine-readable there either.
+- id: lti
+  name: IMS/1EdTech Learning Tools Interoperability
+  conforms: false
+  evidence: >-
+    TU Dresden does not operate its own learning management system. Teaching runs on OPAL at
+    bildungsportal.sachsen.de/opal, the Saxony-wide platform operated by BPS Bildungsportal
+    Sachsen GmbH, Chemnitz — a state consortium vendor shared by every Saxon institution, not a
+    TU Dresden tenancy on a TU Dresden host. Its /opal/.well-known/openid-configuration answers
+    200 but returns an HTML page carrying the BPS copyright banner rather than an OIDC discovery
+    document, which is a soft-200, not a conformance; /opal/restapi/repo/entries answers 403.
+    elearning.tu-dresden.de publishes no DNS record. There is no LTI platform, tool registration
+    endpoint or JWKS on any tu-dresden.de host.
+- id: scim
+  name: SCIM 2.0 (System for Cross-domain Identity Management)
+  conforms: false
+  evidence: >-
+    No SCIM endpoint was found on any TU Dresden host. /scim/v2/ServiceProviderConfig answers 404
+    on opara.zih.tu-dresden.de/server/api and is swallowed by the proxy's auth error on
+    llm.scads.ai; selma.tu-dresden.de/scim/v2/ServiceProviderConfig answers 404. Provisioning at
+    TU Dresden is done through the ZIH identity management system, which publishes no public
+    interface.
+- id: oneroster
+  name: 1EdTech OneRoster
+  conforms: false
+  evidence: No OneRoster surface, rostering API or claim was found on any tu-dresden.de host.
+- id: ed-fi
+  name: Ed-Fi Data Standard
+  conforms: false
+  evidence: >-
+    Ed-Fi is a US K-12 and state-education-agency standard. No Ed-Fi ODS, API or claim exists at
+    TU Dresden, and none would be expected of a German university.
+- id: caliper
+  name: 1EdTech Caliper Analytics
+  conforms: false
+  evidence: No Caliper event store, sensor endpoint or claim was found on any TU Dresden host.
+- id: qti
+  name: 1EdTech Question and Test Interoperability
+  conforms: false
+  evidence: >-
+    No QTI import/export surface is exposed publicly on any tu-dresden.de host. Online
+    assessment for TU Dresden runs on the Saxony-wide OPAL platform at bildungsportal.sachsen.de,
+    which is neither TU Dresden's host nor TU Dresden's software, and which exposes no public QTI
+    endpoint — /opal/restapi/repo/entries answers 403.
+summary:
+  regime: education
+  probed: 12
+  conforms_true: 4
+  conforms_partial: 0
+  conforms_false: 8
+  institution_operated_hits: 4
+  tenant_operated_hits: 0
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

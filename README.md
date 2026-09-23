@@ -71,19 +71,29 @@ Technische Universität Dresden (TU Dresden) is one of Germany's leading researc
 
 ## Type
 
-Index / Consumer / 3rd-Party
+Index / Provider / Private — `x-type: university`, `x-category: Technical University`
 
 ## Tags
 
-Education, Higher Education, University, Research, Open Data, Library, Germany
+University, Higher Education, Education, Germany, Saxony, TU9, Research, Research Data, Research Computing, Artificial Intelligence, Identity Federation, OAI-PMH, Institutional Repository, Open Access
 
 ## APIs
 
-- **TU Dresden Lecture Catalog API** — Gated JSON API for the lecture directory (courses, instructors, buildings, semesters). Requires an API account and auth_code; minimum 10s between calls. Docs: https://vvz.phil.tu-dresden.de/api
-- **TU Dresden Shibboleth Single Sign-On (SAML IdP)** — ZIH-operated SAML 2.0 identity provider for federated authentication. Docs: https://idp.tu-dresden.de/docu/ — Metadata: https://idp.tu-dresden.de/idp/shibboleth
-- **Qucosa OAI-PMH (TU Dresden Document Server)** — OAI-PMH 2.0 metadata harvesting for the Qucosa publication server (tud.qucosa.de). Base: https://tud.qucosa.de/oai/
-- **OpARA Research Data Repository** — ZIH research-data repository for TU Dresden and TU Bergakademie Freiberg. Docs: https://tu-dresden.de/zih/forschung/projekte/opara — Home: https://opara.zih.tu-dresden.de/
-- **SLUB Dresden Linked Open Data API** — Documented bibliographic/authority LOD API (Swagger UI) from the Saxony State and University Library serving TU Dresden. Docs: https://data.slub-dresden.de/doc/swagger_api — Source: https://github.com/slub/data.slub-dresden.de
+Every entry carries an `x-operator` — who runs the thing the entry describes. For a university
+that is almost never the same answer as whose name is on the hostname.
+
+- **TUD:AI LLM API** *(institution)* — OpenAI-compatible LLM inference operated by ZIH and ScaDS.AI Dresden/Leipzig on TU Dresden's own network (141.76.0.0/16, netname TUDINF-LAN). Keys from https://selfservice.tu-dresden.de/services/scads-llm-api/. Base: https://llm.scads.ai/v1 — Docs: https://llm.scads.ai/docs/
+- **OPARA Research Data Repository REST API** *(institution)* — DSpace 7.6.2 REST API, read-open, operated by ZIH for TU Dresden, TU Bergakademie Freiberg, HTW Dresden and Hochschule Mittweida. Base: https://opara.zih.tu-dresden.de/server/api
+- **OPARA OAI-PMH Harvesting Interface** *(institution)* — Twelve metadata prefixes, four institutional set trees. Base: https://opara.zih.tu-dresden.de/server/oai/request
+- **TU Dresden Identity Provider (Shibboleth SAML 2.0 + OpenID Connect)** *(institution)* — DFN-AAI registered, exported to eduGAIN, REFEDS R&S + SIRTFI. Now also serves OIDC discovery and a JWKS. Metadata: https://idp.tu-dresden.de/idp/shibboleth
+- **TU Dresden Lecture Catalog API (Vorlesungsverzeichnis)** *(institution)* — Gated JSON API for the Faculty of Arts lecture directory; account + `auth_code`, minimum 10s between calls. Docs: https://vvz.phil.tu-dresden.de/api
+- **TU Dresden Research Portal (Elsevier Pure) Web Service** *(tenant)* — TU Dresden's CRIS on Elsevier Pure. Portal public; `/ws/api`, `/ws/rest` and `/ws/oai` all 403 to the public internet. Portal: https://fis.tu-dresden.de/portal/
+- **Qucosa TU Dresden OAI-PMH** *(tenant)* — TU Dresden's view of the SLUB-operated Saxon document server. Base: https://tud.qucosa.de/oai/
+
+Removed on 2026-08-30: five OpenAPI contracts and five apis[] entries that were all the SLUB
+Dresden Linked Open Data API at `data.slub-dresden.de`, plus the twenty-two artifacts derived from
+them. SLUB is a separate Saxon state institution with its own Crossref membership and its own
+DataCite provider symbol; its API is not TU Dresden's engineering.
 
 ## Plans
 
@@ -100,13 +110,32 @@ Education, Higher Education, University, Research, Open Data, Library, Germany
 ## Timestamps
 
 - Created: 2026-06-03
-- Modified: 2026-06-03
+- Modified: 2026-08-30
 
 ## Common Properties
 
 - Website: https://tu-dresden.de/
-- GitHub: https://github.com/tu-dresden
+- Blog: https://tu-dresden.de/tu-dresden/newsportal
+- GitHub Organization: https://github.com/tu-dresden
 - LinkedIn: https://de.linkedin.com/school/tu-dresden/
+- Documentation: https://llm.scads.ai/docs/
+- API Reference: https://llm.scads.ai/docs/usage/api/
+- Status: https://llm.scads.ai/status/
+- Support: https://tu-dresden.de/zih/dienste/service-desk
+- Terms of Service: https://tu-dresden.de/impressum
+- Privacy Policy: https://tu-dresden.de/datenschutz
+- Identity Federation: https://met.refeds.org/met/entity/https%3A%2F%2Fidp.tu-dresden.de%2Fidp%2Fshibboleth/
+- Research Repository: https://opara.zih.tu-dresden.de/
+- Library Catalog: https://katalog.slub-dresden.de/
+- Course Catalog: https://vvz.phil.tu-dresden.de/
+- Research Computing: https://tu-dresden.de/zih/hochleistungsrechnen
+- AI Policy: https://tu-dresden.de/tu-dresden/digitalisierung/ki-an-der-tu-dresden
+- AI Tooling: https://llm.scads.ai/docs/
+- Authentication: authentication/tu-dresden-authentication.yml
+- Errors: errors/tu-dresden-problem-types.yml
+- Conformance: conformance/tu-dresden-education-standards.yml
+- Vulnerability Disclosure: security/tu-dresden-vulnerability-disclosure.yml
+- Domain Security: security/tu-dresden-domain-security.yml
 - Plans: plans/tu-dresden-plans-pricing.yml
 - Rate Limits: rate-limits/tu-dresden-rate-limits.yml
 - FinOps: finops/tu-dresden-finops.yml
@@ -114,7 +143,32 @@ Education, Higher Education, University, Research, Open Data, Library, Germany
 
 ## Notes
 
-All entries were verified against live HTTP probes on 2026-06-03; no endpoints were fabricated. The lecture-catalog API is gated (account + auth_code required) and rate-limited. The official `github.com/tu-dresden` org exists but is effectively inactive (a single repository last updated in 2015). The SLUB Dresden Linked Open Data API is provided by the Saxony State and University Library, a separate institution that serves TU Dresden, included here for completeness of the university's developer-facing surface. The LinkedIn page returns HTTP 999 due to LinkedIn bot-blocking but is a valid live page.
+Re-profiled 2026-08-30 under the API Evangelist university pipeline, which settles who operates a
+surface before crediting it to the institution. Every status code in `apis.yml` `x-coverage` was
+observed live on that date with a browser User-Agent; more than sixty hosts and paths were probed
+and nothing blocked the pass.
+
+TU Dresden holds conformance against four of the twelve `education`-regime domain standards —
+`oai-pmh`, `shibboleth`, `saml` and `datacite` — and all four are institution-operated, which is
+unusual in this cohort. See `conformance/tu-dresden-education-standards.yml`. It is not a Crossref
+member and exposes no ORCID iD on any machine-readable surface.
+
+TU Dresden publishes no OpenAPI of its own. The only contract served on any of its surfaces is
+`https://llm.scads.ai/openapi.json`, which is LiteLLM's generic proxy specification
+(`info.title: LiteLLM API`) — the deployment is TU Dresden's, the document is the product's, and it
+is deliberately not saved here. No OpenAPI has been authored from probe responses or prose
+parameter tables.
+
+Confirmed absent by DNS: `data.tu-dresden.de`, `api.tu-dresden.de`, `opendata.tu-dresden.de`,
+`developer.tu-dresden.de`, `gitlab.tu-dresden.de`, `elearning.tu-dresden.de`,
+`status.tu-dresden.de`. Confirmed absent by fetch: `https://tu-dresden.de/llms.txt` (404). A
+`security.txt` IS published at `https://tu-dresden.de/.well-known/security.txt`. The official
+`github.com/tu-dresden` org exists but holds a single repository. The LinkedIn page returns HTTP
+999 due to LinkedIn bot-blocking but is a valid live page.
+
+Not TU Dresden's, and recorded as such: OPAL at `bildungsportal.sachsen.de` (the Saxony-wide LMS
+run by BPS Bildungsportal Sachsen GmbH) and the Mensa API at `studentenwerk-dresden.de` (the
+student services organisation).
 
 ## Maintainers
 

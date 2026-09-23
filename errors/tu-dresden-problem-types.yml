@@ -1,0 +1,93 @@
+generated: '2026-08-30'
+method: probed
+source:
+- https://llm.scads.ai/v1/models
+- https://opara.zih.tu-dresden.de/server/api/config/properties/dspace.name
+- https://opara.zih.tu-dresden.de/server/oai/request?verb=Identify
+- https://opara.zih.tu-dresden.de/server/oai/request?verb=Bogus
+- https://vvz.phil.tu-dresden.de/api?auth_code=test
+- https://fis.tu-dresden.de/ws/api
+description: >-
+  The error envelopes TU Dresden's live surfaces actually return, captured by probing each one on
+  2026-08-30. Recorded because none of these is documented anywhere by the institution and an
+  integrator has no other way to learn them. No RFC 7807 / RFC 9457 `application/problem+json`
+  response was found on any TU Dresden host — every surface uses a different, product-specific
+  shape, and two of them return a failure under an HTTP 200 or 500 status that does not describe
+  it. That mismatch is the single most useful thing in this file.
+conformance:
+  rfc7807: false
+  rfc9457: false
+  evidence: >-
+    No probed response carried Content-Type application/problem+json, and no response body
+    contained the `type`/`title`/`status`/`detail` member set.
+problem_types:
+- surface: tu-dresden:tud-ai-llm
+  status: 500
+  content_type: application/json
+  shape: '{"error":{"message":<string>,"type":<string>,"param":<string>,"code":<string>}}'
+  example: '{"error":{"message":"No api key passed in.","type":"auth_error","param":"None","code":"500"}}'
+  note: >-
+    An authentication failure is returned as HTTP 500 with type "auth_error", not as 401. Clients
+    written against the OpenAI API — which the service is otherwise compatible with — will
+    classify this as a server fault and retry it. The envelope shape is LiteLLM's, the proxy TU
+    Dresden runs; the status-code choice is the deployment's.
+- surface: tu-dresden:tud-ai-llm
+  status: 500
+  content_type: application/json
+  shape: same envelope, different message for a rejected token
+  example: >-
+    {"error":{"message":"Authentication Error, Invalid proxy server token passed. Received API
+    Key = sk-...-key, Key Hash (Token) =d748053a…, Unable to find token in cache or
+    `LiteLLM_VerificationTokenTable`","type":"auth_error","param":"None","code":"500"}}
+  note: >-
+    The response leaks the internal table name and a hash of the presented key. Distinguishing a
+    missing credential from an invalid one is what proves the token is validated, but the detail
+    is more than a public error needs to say.
+- surface: tu-dresden:tud-ai-llm
+  status: 404
+  content_type: application/json
+  shape: '{"detail":<string>}'
+  example: '{"detail":"Not Found"}'
+  note: The FastAPI default, returned for unrouted paths such as /v1/ and /v1/openapi.json.
+- surface: tu-dresden:opara-rest
+  status: 404
+  content_type: application/json
+  shape: '{"timestamp":<iso8601>,"status":<int>,"error":<string>,"message":<string>,"path":<string>}'
+  example: >-
+    {"timestamp":"2026-08-30T20:19:37.704+00:00","status":404,"error":"Not
+    Found","message":"An exception has occurred","path":"/server/api/config/properties/dspace.name"}
+  note: >-
+    The Spring Boot default envelope, echoed by DSpace 7.6.2. `message` is constant and carries
+    no diagnostic value; `path` is the only field that identifies the failure.
+- surface: tu-dresden:opara-oai
+  status: 200
+  content_type: text/xml
+  shape: OAI-PMH <error code="…"> inside a 200 envelope
+  example: >-
+    GET .../server/oai/request?verb=Bogus returns HTTP 200 with
+    <error code="badVerb">Illegal verb</error> inside a well-formed OAI-PMH envelope.
+  note: >-
+    OAI-PMH by design returns protocol errors under HTTP 200. Correct per the specification and a
+    trap for any client that branches on status code alone. Applies equally to the tenant Qucosa
+    endpoint.
+- surface: tu-dresden:lecture-catalog
+  status: 200
+  content_type: text/html
+  shape: German plain-text sentence, no envelope
+  example: 'Der Auth-Code ist leider nicht richtig.'
+  note: >-
+    A rejected credential returns HTTP 200 with a German sentence and no machine-readable
+    structure at all. There is no status code, no JSON, and no English string to match on — a
+    client must compare the body text. This is the least agent-legible failure mode in the repo.
+- surface: tu-dresden:fis-pure
+  status: 403
+  content_type: text/html
+  shape: Apache stock Forbidden page
+  example: '<title>403 Forbidden</title> … You don''t have permission to access this resource.'
+  note: >-
+    An edge denial from Apache rather than an application response — the Pure web service is
+    blocked to the public internet before any authentication is attempted, so no Pure error
+    envelope is observable from outside.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
