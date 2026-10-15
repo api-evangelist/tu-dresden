@@ -1,0 +1,56 @@
+edges:
+- partner_name: eduGAIN
+  partner: null
+  type: register
+  channel: standard-directory
+  relationship: network-participant
+  direction: partner-built
+  evidence: https://technical.edugain.org/api.php?action=list_entities&type=idp&format=json
+  category: research and education identity federation
+  contract_reference:
+    network: eduGAIN (GÉANT interfederation)
+    spec_file: null
+    roles:
+    - identity-provider
+    - service-provider
+    role: identity-and-service-provider
+    federations:
+    - DFN-AAI
+    matched_by: domain+verified:tu-dresden.de
+    entities:
+    - entity_id: https://idp.tu-dresden.de/idp/shibboleth
+      role: identity-provider
+      federation: DFN-AAI
+      display_name: TUD Dresden University of Technology
+      entity_categories:
+      - '11'
+      - '76'
+      sirtfi: true
+      coco: false
+    - entity_id: https://login.uniklinikum-dresden.de/idp/shibboleth
+      role: identity-provider
+      federation: DFN-AAI
+      display_name: University Hospital Carl Gustav Carus
+      entity_categories: null
+      sirtfi: false
+      coco: false
+    - entity_id: https://sfb205.zih.tu-dresden.de/shibboleth
+      role: service-provider
+      federation: DFN-AAI
+      display_name: TUD Dresden University of Technology
+      entity_categories:
+      - '1'
+      - '5'
+      - '109'
+      - '219'
+      sirtfi: false
+      coco: true
+    detected_by: sweep-higher-ed.py
+    detected: '2026-10-15'
+  detected_by: sweep-higher-ed.py
+  first_seen: '2026-10-15'
+generated: '2026-10-15'
+method: searched
+checked:
+- https://technical.edugain.org/api.php?action=list_entities&type=idp&format=json
+- https://technical.edugain.org/api.php?action=list_entities&type=sp&format=json
